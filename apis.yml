@@ -1,0 +1,83 @@
+name: Azure Functions
+description: Azure Functions is a serverless compute service that lets you run event-triggered code without having to explicitly provision or manage infrastructure.
+image: https://azure.microsoft.com/svghandler/functions/
+tags:
+- Serverless
+- Compute
+- Functions
+- Event-Driven
+- Cloud
+created: '2024'
+modified: '2024'
+url: https://azure.microsoft.com/en-us/services/functions/
+apis:
+- name: Azure Functions Management API
+  description: REST API for managing Azure Functions apps, function deployments, and configuration
+  image: https://azure.microsoft.com/svghandler/functions/
+  humanUrl: https://docs.microsoft.com/en-us/azure/azure-functions/
+  baseUrl: https://management.azure.com
+  tags:
+  - Management
+  - Functions
+  - Deployment
+  properties:
+  - type: documentation
+    url: https://docs.microsoft.com/en-us/rest/api/appservice/
+  - type: openapi
+    url: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/web/resource-manager/Microsoft.Web/stable/2022-03-01/WebApps.json
+  - type: authentication
+    url: https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings
+  - type: pricing
+    url: https://azure.microsoft.com/en-us/pricing/details/functions/
+  - type: tutorials
+    url: https://docs.microsoft.com/en-us/azure/azure-functions/functions-get-started
+- name: Azure Functions Runtime API
+  description: API for invoking and interacting with deployed Azure Functions
+  image: https://azure.microsoft.com/svghandler/functions/
+  humanUrl: https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference
+  baseUrl: https://{function-app-name}.azurewebsites.net
+  tags:
+  - Runtime
+  - Invocation
+  - HTTP Triggers
+  properties:
+  - type: documentation
+    url: https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook
+  - type: authentication
+    url: https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger#authorization-keys
+- name: Azure Functions Durable Functions API
+  description: Extension for writing stateful functions in a serverless environment
+  image: https://azure.microsoft.com/svghandler/functions/
+  humanUrl: https://docs.microsoft.com/en-us/azure/azure-functions/durable/
+  baseUrl: https://{function-app-name}.azurewebsites.net
+  tags:
+  - Durable
+  - Stateful
+  - Orchestration
+  - Workflows
+  properties:
+  - type: documentation
+    url: https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview
+  - type: github
+    url: https://github.com/Azure/azure-functions-durable-extension
+common:
+- type: portal
+  url: https://portal.azure.com
+- type: blog
+  url: https://techcommunity.microsoft.com/t5/azure-functions/bg-p/AzureFunctionsBlog
+- type: status
+  url: https://status.azure.com
+- type: support
+  url: https://azure.microsoft.com/en-us/support/options/
+- type: terms-of-service
+  url: https://azure.microsoft.com/en-us/support/legal/
+- type: github
+  url: https://github.com/Azure/Azure-Functions
+- type: quickstarts
+  url: https://docs.microsoft.com/en-us/azure/azure-functions/functions-get-started
+- type: samples
+  url: https://docs.microsoft.com/en-us/samples/browse/?products=azure-functions
+maintainers:
+- name: Microsoft Azure
+  email: azuresupport@microsoft.com
+  url: https://azure.microsoft.com
