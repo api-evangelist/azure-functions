@@ -8,11 +8,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Serverless
-  - Compute
-  - Functions
-  - Event-Driven
   - Cloud
+  - Compute
+  - Event-Driven
+  - Functions
+  - Serverless
 url: >-
   https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/apis.yml
 created: '2024-01-01'
@@ -25,9 +25,9 @@ apis:
     humanURL: https://docs.microsoft.com/en-us/azure/azure-functions/
     baseURL: https://management.azure.com
     tags:
-      - Management
-      - Functions
       - Deployment
+      - Functions
+      - Management
     properties:
       - type: Documentation
         url: https://docs.microsoft.com/en-us/rest/api/appservice/
@@ -41,9 +41,9 @@ apis:
     humanURL: https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference
     baseURL: https://{function-app-name}.azurewebsites.net
     tags:
-      - Runtime
-      - Invocation
       - HTTP Triggers
+      - Invocation
+      - Runtime
     properties:
       - type: Documentation
         url: https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook
