@@ -1,0 +1,8 @@
+{
+  "frequencyInterval": 1,
+  "frequencyUnit": "Day",
+  "keepAtLeastOneBackup": true,
+  "lastExecutionTime": "2026-04-19T12:00:00Z",
+  "retentionPeriodInDays": 1,
+  "startTime": "2026-04-19T12:00:00Z"
+}

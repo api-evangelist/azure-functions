@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-schema/azure-functions-container-throttling-data-schema.json",
+  "title": "ContainerThrottlingData",
+  "description": "ContainerThrottlingData schema from Azure Functions API",
+  "type": "object",
+  "properties": {
+    "periods": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "throttledPeriods": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "throttledTime": {
+      "format": "int32",
+      "type": "integer"
+    }
+  }
+}

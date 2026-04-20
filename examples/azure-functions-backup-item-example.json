@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "blobName": "example-string",
+    "correlationId": "example-string",
+    "created": "2026-04-19T12:00:00Z",
+    "databases": [
+      {}
+    ],
+    "finishedTimeStamp": "2026-04-19T12:00:00Z",
+    "id": 1,
+    "lastRestoreTimeStamp": "2026-04-19T12:00:00Z",
+    "log": "example-string",
+    "name": "example-string",
+    "scheduled": true,
+    "sizeInBytes": 1,
+    "status": "InProgress",
+    "storageAccountUrl": "example-string",
+    "websiteSizeInBytes": 1
+  }
+}

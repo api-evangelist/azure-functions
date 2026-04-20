@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-schema/azure-functions-azure-table-storage-application-logs-config-schema.json",
+  "title": "AzureTableStorageApplicationLogsConfig",
+  "description": "Application logs to Azure table storage configuration.",
+  "type": "object",
+  "properties": {
+    "level": {
+      "description": "Log level.",
+      "enum": [
+        "Off",
+        "Verbose",
+        "Information",
+        "Warning",
+        "Error"
+      ],
+      "type": "string",
+      "x-ms-enum": {
+        "modelAsString": false,
+        "name": "LogLevel"
+      }
+    },
+    "sasUrl": {
+      "description": "SAS URL to an Azure table with add/query/delete permissions.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "sasUrl"
+  ]
+}

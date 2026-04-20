@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-structure/azure-functions-api-kv-reference-structure.json",
+  "description": "Description of site key vault references.",
+  "type": "object",
+  "properties": {
+    "details": {
+      "type": "string"
+    },
+    "identityType": {
+      "enum": [
+        "None",
+        "SystemAssigned",
+        "UserAssigned"
+      ],
+      "type": "string",
+      "x-ms-enum": {
+        "modelAsString": false,
+        "name": "ManagedServiceIdentityType"
+      }
+    },
+    "location": {
+      "enum": [
+        "ApplicationSetting"
+      ],
+      "type": "string",
+      "x-ms-enum": {
+        "modelAsString": false,
+        "name": "ConfigReferenceLocation"
+      }
+    },
+    "reference": {
+      "type": "string"
+    },
+    "secretName": {
+      "type": "string"
+    },
+    "secretVersion": {
+      "type": "string"
+    },
+    "source": {
+      "enum": [
+        "KeyVault"
+      ],
+      "type": "string",
+      "x-ms-enum": {
+        "modelAsString": false,
+        "name": "ConfigReferenceSource"
+      }
+    },
+    "status": {
+      "enum": [
+        "Initialized",
+        "Resolved",
+        "InvalidSyntax",
+        "MSINotEnabled",
+        "VaultNotFound",
+        "SecretNotFound",
+        "SecretVersionNotFound",
+        "AccessToKeyVaultDenied",
+        "OtherReasons"
+      ],
+      "type": "string",
+      "x-ms-enum": {
+        "modelAsString": false,
+        "name": "ResolveStatus"
+      }
+    },
+    "vaultName": {
+      "type": "string"
+    }
+  },
+  "name": "ApiKVReference"
+}

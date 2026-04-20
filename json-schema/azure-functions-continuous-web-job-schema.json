@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-schema/azure-functions-continuous-web-job-schema.json",
+  "title": "ContinuousWebJob",
+  "description": "Continuous Web Job Information.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "description": "ContinuousWebJob resource specific properties",
+      "properties": {
+        "detailed_status": {
+          "description": "Detailed status.",
+          "type": "string"
+        },
+        "error": {
+          "description": "Error information.",
+          "type": "string"
+        },
+        "extra_info_url": {
+          "description": "Extra Info URL.",
+          "type": "string"
+        },
+        "log_url": {
+          "description": "Log URL.",
+          "type": "string"
+        },
+        "run_command": {
+          "description": "Run command.",
+          "type": "string"
+        },
+        "settings": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Job settings.",
+          "type": "object"
+        },
+        "status": {
+          "description": "Job status.",
+          "enum": [
+            "Initializing",
+            "Starting",
+            "Running",
+            "PendingRestart",
+            "Stopped"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "modelAsString": false,
+            "name": "ContinuousWebJobStatus"
+          }
+        },
+        "url": {
+          "description": "Job URL.",
+          "type": "string"
+        },
+        "using_sdk": {
+          "description": "Using SDK?",
+          "type": "boolean"
+        },
+        "web_job_type": {
+          "description": "Job type.",
+          "enum": [
+            "Continuous",
+            "Triggered"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "modelAsString": false,
+            "name": "WebJobType"
+          }
+        }
+      },
+      "x-ms-client-flatten": true
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-structure/azure-functions-backup-item-structure.json",
+  "description": "Backup description.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "description": "BackupItem resource specific properties",
+      "properties": {
+        "blobName": {
+          "description": "Name of the blob which contains data for this backup.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "correlationId": {
+          "description": "Unique correlation identifier. Please use this along with the timestamp while communicating with Azure support.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "created": {
+          "description": "Timestamp of the backup creation.",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "databases": {
+          "description": "List of databases included in the backup.",
+          "items": {
+            "$ref": "#/definitions/DatabaseBackupSetting"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "finishedTimeStamp": {
+          "description": "Timestamp when this backup finished.",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Id of the backup.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer",
+          "x-ms-client-name": "BackupId"
+        },
+        "lastRestoreTimeStamp": {
+          "description": "Timestamp of a last restore operation which used this backup.",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "log": {
+          "description": "Details regarding this backup. Might contain an error message.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of this backup.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "scheduled": {
+          "description": "True if this backup has been created due to a schedule being triggered.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "sizeInBytes": {
+          "description": "Size of the backup in bytes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "status": {
+          "description": "Backup status.",
+          "enum": [
+            "InProgress",
+            "Failed",
+            "Succeeded",
+            "TimedOut",
+            "Created",
+            "Skipped",
+            "PartiallySucceeded",
+            "DeleteInProgress",
+            "DeleteFailed",
+            "Deleted"
+          ],
+          "readOnly": true,
+          "type": "string",
+          "x-ms-enum": {
+            "modelAsString": false,
+            "name": "BackupItemStatus"
+          }
+        },
+        "storageAccountUrl": {
+          "description": "SAS URL for the storage account container which contains this backup.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "websiteSizeInBytes": {
+          "description": "Size of the original web app which has been backed up.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "x-ms-client-flatten": true
+    }
+  },
+  "name": "BackupItem"
+}

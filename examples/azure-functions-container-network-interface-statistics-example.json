@@ -1,0 +1,10 @@
+{
+  "rxBytes": 1,
+  "rxDropped": 1,
+  "rxErrors": 1,
+  "rxPackets": 1,
+  "txBytes": 1,
+  "txDropped": 1,
+  "txErrors": 1,
+  "txPackets": 1
+}

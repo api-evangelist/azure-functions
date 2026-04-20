@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-structure/azure-functions-container-cpu-statistics-structure.json",
+  "description": "ContainerCpuStatistics schema from Azure Functions API",
+  "type": "object",
+  "properties": {
+    "cpuUsage": {
+      "$ref": "#/definitions/ContainerCpuUsage"
+    },
+    "onlineCpuCount": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "systemCpuUsage": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "throttlingData": {
+      "$ref": "#/definitions/ContainerThrottlingData"
+    }
+  },
+  "name": "ContainerCpuStatistics"
+}

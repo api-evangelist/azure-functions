@@ -1,0 +1,10 @@
+{
+  "properties": {
+    "backupName": "example-string",
+    "databases": [
+      {}
+    ],
+    "enabled": true,
+    "storageAccountUrl": "example-string"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-schema/azure-functions-conn-string-value-type-pair-schema.json",
+  "title": "ConnStringValueTypePair",
+  "description": "Database connection string value to type pair.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "Type of database.",
+      "enum": [
+        "MySql",
+        "SQLServer",
+        "SQLAzure",
+        "Custom",
+        "NotificationHub",
+        "ServiceBus",
+        "EventHub",
+        "ApiHub",
+        "DocDb",
+        "RedisCache",
+        "PostgreSQL"
+      ],
+      "type": "string",
+      "x-ms-enum": {
+        "modelAsString": false,
+        "name": "ConnectionStringType"
+      }
+    },
+    "value": {
+      "description": "Value of pair.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "value",
+    "type"
+  ]
+}

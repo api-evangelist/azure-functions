@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-structure/azure-functions-azure-blob-storage-http-logs-config-structure.json",
+  "description": "Http logs to azure blob storage configuration.",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "description": "True if configuration is enabled, false if it is disabled and null if configuration is not set.",
+      "type": "boolean"
+    },
+    "retentionInDays": {
+      "description": "Retention in days.\nRemove blobs older than X days.\n0 or lower means no retention.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "sasUrl": {
+      "description": "SAS url to a azure blob container with read/write/list/delete permissions.",
+      "type": "string"
+    }
+  },
+  "name": "AzureBlobStorageHttpLogsConfig"
+}

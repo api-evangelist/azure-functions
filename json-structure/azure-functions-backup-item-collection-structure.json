@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-structure/azure-functions-backup-item-collection-structure.json",
+  "description": "Collection of backup items.",
+  "type": "object",
+  "properties": {
+    "nextLink": {
+      "description": "Link to next page of resources.",
+      "readOnly": true,
+      "type": "string"
+    },
+    "value": {
+      "description": "Collection of resources.",
+      "items": {
+        "$ref": "#/definitions/BackupItem"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "value"
+  ],
+  "name": "BackupItemCollection"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-schema/azure-functions-container-cpu-usage-schema.json",
+  "title": "ContainerCpuUsage",
+  "description": "ContainerCpuUsage schema from Azure Functions API",
+  "type": "object",
+  "properties": {
+    "kernelModeUsage": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "perCpuUsage": {
+      "items": {
+        "format": "int64",
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "totalUsage": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "userModeUsage": {
+      "format": "int64",
+      "type": "integer"
+    }
+  }
+}

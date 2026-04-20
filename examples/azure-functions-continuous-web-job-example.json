@@ -1,0 +1,14 @@
+{
+  "properties": {
+    "detailed_status": "example-string",
+    "error": "example-string",
+    "extra_info_url": "example-string",
+    "log_url": "example-string",
+    "run_command": "example-string",
+    "settings": {},
+    "status": "Initializing",
+    "url": "example-string",
+    "using_sdk": true,
+    "web_job_type": "Continuous"
+  }
+}

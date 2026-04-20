@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-structure/azure-functions-backup-schedule-structure.json",
+  "description": "Description of a backup schedule. Describes how often should be the backup performed and what should be the retention policy.",
+  "type": "object",
+  "properties": {
+    "frequencyInterval": {
+      "default": 7,
+      "description": "How often the backup should be executed (e.g. for weekly backup, this should be set to 7 and FrequencyUnit should be set to Day)",
+      "format": "int32",
+      "type": "integer"
+    },
+    "frequencyUnit": {
+      "default": "Day",
+      "description": "The unit of time for how often the backup should be executed (e.g. for weekly backup, this should be set to Day and FrequencyInterval should be set to 7)",
+      "enum": [
+        "Day",
+        "Hour"
+      ],
+      "type": "string",
+      "x-ms-enum": {
+        "modelAsString": false,
+        "name": "FrequencyUnit"
+      }
+    },
+    "keepAtLeastOneBackup": {
+      "default": true,
+      "description": "True if the retention policy should always keep at least one backup in the storage account, regardless how old it is; false otherwise.",
+      "type": "boolean"
+    },
+    "lastExecutionTime": {
+      "description": "Last time when this schedule was triggered.",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "retentionPeriodInDays": {
+      "default": 30,
+      "description": "After how many days backups should be deleted.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "startTime": {
+      "description": "When the schedule should start working.",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "frequencyInterval",
+    "frequencyUnit",
+    "keepAtLeastOneBackup",
+    "retentionPeriodInDays"
+  ],
+  "name": "BackupSchedule"
+}

@@ -1,0 +1,5 @@
+{
+  "enabled": true,
+  "retentionInDays": 1,
+  "sasUrl": "example-string"
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-schema/azure-functions-backup-request-schema.json",
+  "title": "BackupRequest",
+  "description": "Description of a backup which will be performed.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "description": "BackupRequest resource specific properties",
+      "properties": {
+        "backupName": {
+          "description": "Name of the backup.",
+          "type": "string"
+        },
+        "backupSchedule": {
+          "$ref": "#/definitions/BackupSchedule",
+          "description": "Schedule for the backup if it is executed periodically."
+        },
+        "databases": {
+          "description": "Databases included in the backup.",
+          "items": {
+            "$ref": "#/definitions/DatabaseBackupSetting"
+          },
+          "type": "array"
+        },
+        "enabled": {
+          "description": "True if the backup schedule is enabled (must be included in that case), false if the backup schedule should be disabled.",
+          "type": "boolean"
+        },
+        "storageAccountUrl": {
+          "description": "SAS URL to the container.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "storageAccountUrl"
+      ],
+      "x-ms-client-flatten": true
+    }
+  }
+}

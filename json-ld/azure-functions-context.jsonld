@@ -1,0 +1,272 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "azurefunctions": "https://azure.microsoft.com/azure-functions/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ApiKVReference": "azurefunctions:ApiKVReference",
+    "ApplicationLogsConfig": "azurefunctions:ApplicationLogsConfig",
+    "AzureBlobStorageApplicationLogsConfig": "azurefunctions:AzureBlobStorageApplicationLogsConfig",
+    "AzureBlobStorageHttpLogsConfig": "azurefunctions:AzureBlobStorageHttpLogsConfig",
+    "AzureStorageInfoValue": "azurefunctions:AzureStorageInfoValue",
+    "AzureStoragePropertyDictionaryResource": "azurefunctions:AzureStoragePropertyDictionaryResource",
+    "AzureTableStorageApplicationLogsConfig": "azurefunctions:AzureTableStorageApplicationLogsConfig",
+    "BackupItem": "azurefunctions:BackupItem",
+    "BackupItemCollection": "azurefunctions:BackupItemCollection",
+    "BackupRequest": "azurefunctions:BackupRequest",
+    "BackupSchedule": "azurefunctions:BackupSchedule",
+    "ConnStringValueTypePair": "azurefunctions:ConnStringValueTypePair",
+    "ConnectionStringDictionary": "azurefunctions:ConnectionStringDictionary",
+    "ContainerCpuStatistics": "azurefunctions:ContainerCpuStatistics",
+    "ContainerCpuUsage": "azurefunctions:ContainerCpuUsage",
+    "ContainerInfo": "azurefunctions:ContainerInfo",
+    "ContainerMemoryStatistics": "azurefunctions:ContainerMemoryStatistics",
+    "ContainerNetworkInterfaceStatistics": "azurefunctions:ContainerNetworkInterfaceStatistics",
+    "ContainerThrottlingData": "azurefunctions:ContainerThrottlingData",
+    "ContinuousWebJob": "azurefunctions:ContinuousWebJob",
+    "details": {
+      "@id": "azurefunctions:details",
+      "@type": "xsd:string"
+    },
+    "identityType": {
+      "@id": "azurefunctions:identityType",
+      "@type": "xsd:string"
+    },
+    "location": {
+      "@id": "azurefunctions:location",
+      "@type": "xsd:string"
+    },
+    "reference": {
+      "@id": "azurefunctions:reference",
+      "@type": "xsd:string"
+    },
+    "secretName": {
+      "@id": "azurefunctions:secretName",
+      "@type": "xsd:string"
+    },
+    "secretVersion": {
+      "@id": "azurefunctions:secretVersion",
+      "@type": "xsd:string"
+    },
+    "source": {
+      "@id": "azurefunctions:source",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "azurefunctions:status",
+      "@type": "xsd:string"
+    },
+    "vaultName": {
+      "@id": "azurefunctions:vaultName",
+      "@type": "xsd:string"
+    },
+    "azureBlobStorage": {
+      "@id": "azurefunctions:azureBlobStorage",
+      "@type": "xsd:string"
+    },
+    "azureTableStorage": {
+      "@id": "azurefunctions:azureTableStorage",
+      "@type": "xsd:string"
+    },
+    "fileSystem": {
+      "@id": "azurefunctions:fileSystem",
+      "@type": "xsd:string"
+    },
+    "level": {
+      "@id": "azurefunctions:level",
+      "@type": "xsd:string"
+    },
+    "retentionInDays": {
+      "@id": "azurefunctions:retentionInDays",
+      "@type": "xsd:integer"
+    },
+    "sasUrl": {
+      "@id": "azurefunctions:sasUrl",
+      "@type": "xsd:string"
+    },
+    "enabled": {
+      "@id": "azurefunctions:enabled",
+      "@type": "xsd:boolean"
+    },
+    "accessKey": {
+      "@id": "azurefunctions:accessKey",
+      "@type": "xsd:string"
+    },
+    "accountName": {
+      "@id": "azurefunctions:accountName",
+      "@type": "xsd:string"
+    },
+    "mountPath": {
+      "@id": "azurefunctions:mountPath",
+      "@type": "xsd:string"
+    },
+    "shareName": {
+      "@id": "azurefunctions:shareName",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "azurefunctions:state",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "azurefunctions:type",
+      "@type": "xsd:string"
+    },
+    "properties": {
+      "@id": "azurefunctions:properties",
+      "@type": "@id"
+    },
+    "nextLink": {
+      "@id": "azurefunctions:nextLink",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "azurefunctions:value",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "frequencyInterval": {
+      "@id": "azurefunctions:frequencyInterval",
+      "@type": "xsd:integer"
+    },
+    "frequencyUnit": {
+      "@id": "azurefunctions:frequencyUnit",
+      "@type": "xsd:string"
+    },
+    "keepAtLeastOneBackup": {
+      "@id": "azurefunctions:keepAtLeastOneBackup",
+      "@type": "xsd:boolean"
+    },
+    "lastExecutionTime": {
+      "@id": "azurefunctions:lastExecutionTime",
+      "@type": "xsd:string"
+    },
+    "retentionPeriodInDays": {
+      "@id": "azurefunctions:retentionPeriodInDays",
+      "@type": "xsd:integer"
+    },
+    "startTime": {
+      "@id": "azurefunctions:startTime",
+      "@type": "xsd:string"
+    },
+    "cpuUsage": {
+      "@id": "azurefunctions:cpuUsage",
+      "@type": "xsd:string"
+    },
+    "onlineCpuCount": {
+      "@id": "azurefunctions:onlineCpuCount",
+      "@type": "xsd:integer"
+    },
+    "systemCpuUsage": {
+      "@id": "azurefunctions:systemCpuUsage",
+      "@type": "xsd:integer"
+    },
+    "throttlingData": {
+      "@id": "azurefunctions:throttlingData",
+      "@type": "xsd:string"
+    },
+    "kernelModeUsage": {
+      "@id": "azurefunctions:kernelModeUsage",
+      "@type": "xsd:integer"
+    },
+    "perCpuUsage": {
+      "@id": "azurefunctions:perCpuUsage",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "totalUsage": {
+      "@id": "azurefunctions:totalUsage",
+      "@type": "xsd:integer"
+    },
+    "userModeUsage": {
+      "@id": "azurefunctions:userModeUsage",
+      "@type": "xsd:integer"
+    },
+    "currentCpuStats": {
+      "@id": "azurefunctions:currentCpuStats",
+      "@type": "xsd:string"
+    },
+    "currentTimeStamp": {
+      "@id": "azurefunctions:currentTimeStamp",
+      "@type": "xsd:string"
+    },
+    "eth0": {
+      "@id": "azurefunctions:eth0",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "azurefunctions:id",
+      "@type": "xsd:string"
+    },
+    "memoryStats": {
+      "@id": "azurefunctions:memoryStats",
+      "@type": "xsd:string"
+    },
+    "name": "schema:name",
+    "previousCpuStats": {
+      "@id": "azurefunctions:previousCpuStats",
+      "@type": "xsd:string"
+    },
+    "previousTimeStamp": {
+      "@id": "azurefunctions:previousTimeStamp",
+      "@type": "xsd:string"
+    },
+    "limit": {
+      "@id": "azurefunctions:limit",
+      "@type": "xsd:integer"
+    },
+    "maxUsage": {
+      "@id": "azurefunctions:maxUsage",
+      "@type": "xsd:integer"
+    },
+    "usage": {
+      "@id": "azurefunctions:usage",
+      "@type": "xsd:integer"
+    },
+    "rxBytes": {
+      "@id": "azurefunctions:rxBytes",
+      "@type": "xsd:integer"
+    },
+    "rxDropped": {
+      "@id": "azurefunctions:rxDropped",
+      "@type": "xsd:integer"
+    },
+    "rxErrors": {
+      "@id": "azurefunctions:rxErrors",
+      "@type": "xsd:integer"
+    },
+    "rxPackets": {
+      "@id": "azurefunctions:rxPackets",
+      "@type": "xsd:integer"
+    },
+    "txBytes": {
+      "@id": "azurefunctions:txBytes",
+      "@type": "xsd:integer"
+    },
+    "txDropped": {
+      "@id": "azurefunctions:txDropped",
+      "@type": "xsd:integer"
+    },
+    "txErrors": {
+      "@id": "azurefunctions:txErrors",
+      "@type": "xsd:integer"
+    },
+    "txPackets": {
+      "@id": "azurefunctions:txPackets",
+      "@type": "xsd:integer"
+    },
+    "periods": {
+      "@id": "azurefunctions:periods",
+      "@type": "xsd:integer"
+    },
+    "throttledPeriods": {
+      "@id": "azurefunctions:throttledPeriods",
+      "@type": "xsd:integer"
+    },
+    "throttledTime": {
+      "@id": "azurefunctions:throttledTime",
+      "@type": "xsd:integer"
+    }
+  }
+}

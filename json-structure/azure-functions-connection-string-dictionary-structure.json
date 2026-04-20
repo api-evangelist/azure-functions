@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-structure/azure-functions-connection-string-dictionary-structure.json",
+  "description": "String dictionary resource.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "additionalProperties": {
+        "$ref": "#/definitions/ConnStringValueTypePair"
+      },
+      "description": "Connection strings.",
+      "type": "object",
+      "x-ms-client-flatten": true
+    }
+  },
+  "name": "ConnectionStringDictionary"
+}

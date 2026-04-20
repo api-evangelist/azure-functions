@@ -1,0 +1,11 @@
+{
+  "details": "example-string",
+  "identityType": "None",
+  "location": "ApplicationSetting",
+  "reference": "example-string",
+  "secretName": "example-string",
+  "secretVersion": "example-string",
+  "source": "KeyVault",
+  "status": "Initialized",
+  "vaultName": "example-string"
+}

@@ -1,0 +1,8 @@
+{
+  "accessKey": "example-string",
+  "accountName": "example-string",
+  "mountPath": "example-string",
+  "shareName": "example-string",
+  "state": "Ok",
+  "type": "AzureFiles"
+}

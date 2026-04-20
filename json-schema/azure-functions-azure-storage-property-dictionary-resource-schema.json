@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-schema/azure-functions-azure-storage-property-dictionary-resource-schema.json",
+  "title": "AzureStoragePropertyDictionaryResource",
+  "description": "AzureStorageInfo dictionary resource.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "additionalProperties": {
+        "$ref": "#/definitions/AzureStorageInfoValue"
+      },
+      "description": "Azure storage accounts.",
+      "type": "object",
+      "x-ms-client-flatten": true
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-schema/azure-functions-container-info-schema.json",
+  "title": "ContainerInfo",
+  "description": "ContainerInfo schema from Azure Functions API",
+  "type": "object",
+  "properties": {
+    "currentCpuStats": {
+      "$ref": "#/definitions/ContainerCpuStatistics"
+    },
+    "currentTimeStamp": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "eth0": {
+      "$ref": "#/definitions/ContainerNetworkInterfaceStatistics"
+    },
+    "id": {
+      "type": "string"
+    },
+    "memoryStats": {
+      "$ref": "#/definitions/ContainerMemoryStatistics"
+    },
+    "name": {
+      "type": "string"
+    },
+    "previousCpuStats": {
+      "$ref": "#/definitions/ContainerCpuStatistics"
+    },
+    "previousTimeStamp": {
+      "format": "date-time",
+      "type": "string"
+    }
+  }
+}
