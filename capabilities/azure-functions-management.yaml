@@ -1,93 +1,166 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Azure Functions Management"
-  description: "Workflow capability for managing Azure Functions resources. Used by cloud engineers and DevOps teams."
+  label: Azure Functions Management
+  description: Workflow capability for managing Azure Functions resources. Used by cloud engineers and DevOps teams.
   tags:
-    - Azure
-    - Cloud
-    - Management
-  created: "2026-04-19"
-  modified: "2026-04-19"
-
+  - Azure
+  - Cloud
+  - Management
+  created: '2026-04-19'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      AZURE_SUBSCRIPTION_ID: AZURE_SUBSCRIPTION_ID
-      AZURE_ACCESS_TOKEN: AZURE_ACCESS_TOKEN
-
+- namespace: env
+  keys:
+    AZURE_SUBSCRIPTION_ID: AZURE_SUBSCRIPTION_ID
+    AZURE_ACCESS_TOKEN: AZURE_ACCESS_TOKEN
 capability:
   consumes:
-    - import: azure-functions
-      location: ./shared/azure-functions.yaml
-
+  - type: http
+    namespace: azure-functions
+    baseUri: https://management.azure.com
+    description: Azure Functions REST API
+    authentication:
+      type: bearer
+      token: '{{AZURE_ACCESS_TOKEN}}'
+    resources:
+    - name: function-app
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.FunctionApp/FunctionApps
+      description: Manage FunctionApp resources
+      operations:
+      - name: list-function-apps
+        method: GET
+        description: List all FunctionApp resources
+        inputParameters:
+        - name: subscriptionId
+          in: path
+          type: string
+          required: true
+          description: Azure subscription ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: function
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Function/Functions
+      description: Manage Function resources
+      operations:
+      - name: list-functions
+        method: GET
+        description: List all Function resources
+        inputParameters:
+        - name: subscriptionId
+          in: path
+          type: string
+          required: true
+          description: Azure subscription ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: trigger
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Trigger/Triggers
+      description: Manage Trigger resources
+      operations:
+      - name: list-triggers
+        method: GET
+        description: List all Trigger resources
+        inputParameters:
+        - name: subscriptionId
+          in: path
+          type: string
+          required: true
+          description: Azure subscription ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: binding
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Binding/Bindings
+      description: Manage Binding resources
+      operations:
+      - name: list-bindings
+        method: GET
+        description: List all Binding resources
+        inputParameters:
+        - name: subscriptionId
+          in: path
+          type: string
+          required: true
+          description: Azure subscription ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8085
-      namespace: azure-functions-management-api
-      description: "Unified REST API for Azure Functions management."
-      resources:
-        - path: /v1/resources
-          name: resources
-          description: "Resource management"
-          operations:
-            - method: GET
-              name: list
-              description: "List all resources"
-              call: "azure-functions.list-function-apps"
-              with:
-                subscriptionId: "rest.subscriptionId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9095
-      namespace: azure-functions-management-mcp
-      transport: http
-      description: "MCP server for AI-assisted Azure Functions management."
-      tools:
-        - name: list-function-apps
-          description: "List FunctionApp resources"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "azure-functions.list-function-apps"
-          with:
-            subscriptionId: "tools.subscriptionId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-functions
-          description: "List Function resources"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "azure-functions.list-functions"
-          with:
-            subscriptionId: "tools.subscriptionId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-triggers
-          description: "List Trigger resources"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "azure-functions.list-triggers"
-          with:
-            subscriptionId: "tools.subscriptionId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-bindings
-          description: "List Binding resources"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "azure-functions.list-bindings"
-          with:
-            subscriptionId: "tools.subscriptionId"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8085
+    namespace: azure-functions-management-api
+    description: Unified REST API for Azure Functions management.
+    resources:
+    - path: /v1/resources
+      name: resources
+      description: Resource management
+      operations:
+      - method: GET
+        name: list
+        description: List all resources
+        call: azure-functions.list-function-apps
+        with:
+          subscriptionId: rest.subscriptionId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9095
+    namespace: azure-functions-management-mcp
+    transport: http
+    description: MCP server for AI-assisted Azure Functions management.
+    tools:
+    - name: list-function-apps
+      description: List FunctionApp resources
+      hints:
+        readOnly: true
+        openWorld: true
+      call: azure-functions.list-function-apps
+      with:
+        subscriptionId: tools.subscriptionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-functions
+      description: List Function resources
+      hints:
+        readOnly: true
+        openWorld: true
+      call: azure-functions.list-functions
+      with:
+        subscriptionId: tools.subscriptionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-triggers
+      description: List Trigger resources
+      hints:
+        readOnly: true
+        openWorld: true
+      call: azure-functions.list-triggers
+      with:
+        subscriptionId: tools.subscriptionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-bindings
+      description: List Binding resources
+      hints:
+        readOnly: true
+        openWorld: true
+      call: azure-functions.list-bindings
+      with:
+        subscriptionId: tools.subscriptionId
+      outputParameters:
+      - type: object
+        mapping: $.
