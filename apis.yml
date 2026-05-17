@@ -33,7 +33,7 @@ apis:
     url: https://docs.microsoft.com/en-us/rest/api/appservice/
   - type: OpenAPI
     url: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/web/resource-manager/Microsoft.Web/stable/2022-03-01/WebApps.json
-  - type: Getting Started
+  - type: GettingStarted
     url: https://docs.microsoft.com/en-us/azure/azure-functions/functions-get-started
 - aid: azure-functions:azure-functions-runtime-api
   name: Azure Functions Runtime API
@@ -56,15 +56,15 @@ common:
   url: https://learn.microsoft.com/en-us/azure/azure-functions/
 - type: Blog
   url: https://techcommunity.microsoft.com/t5/azure-functions/bg-p/AzureFunctionsBlog
-- type: Status
+- type: StatusPage
   url: https://status.azure.com
 - type: Support
   url: https://azure.microsoft.com/en-us/support/options/
-- type: Terms of Service
+- type: TermsOfService
   url: https://azure.microsoft.com/en-us/support/legal/
-- type: Privacy Policy
+- type: PrivacyPolicy
   url: https://privacy.microsoft.com/en-us/privacystatement
-- type: GitHub Organization
+- type: GitHubOrganization
   url: https://github.com/Azure/Azure-Functions
 - type: SpectralRules
   url: https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/rules/azure-functions-spectral-rules.yml
