@@ -1,0 +1,1704 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Azure Functions Management API — WebApps
+  description: 'Azure Functions Management API — WebApps. 37 operations. Lead operation: Azure Functions Get All Apps for
+    a Subscription.. Self-contained Naftiko capability covering one Azure Functions business surface.'
+  tags:
+  - Azure Functions
+  - WebApps
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AZURE_FUNCTIONS_API_KEY: AZURE_FUNCTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-functions-webapps
+    baseUri: https://management.azure.com
+    description: Azure Functions Management API — WebApps business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions-subscriptionId-providers-Microsoft.Web-sites
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Web/sites
+      operations:
+      - name: webappslist
+        method: GET
+        description: Azure Functions Get All Apps for a Subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites
+      operations:
+      - name: webappslistbyresourcegroup
+        method: GET
+        description: Azure Functions Gets All Web, Mobile, and API Apps in the Specified Resource Group.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: includeSlots
+          in: query
+          type: boolean
+          description: Specify <strong>true</strong> to include deployment slots in results. The default is false, which only
+            gives you the production slot of all apps.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}
+      operations:
+      - name: webappsdelete
+        method: DELETE
+        description: Azure Functions Deletes a Web, Mobile, or API App, or One of the Deployment Slots.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app to delete.
+          required: true
+        - name: deleteMetrics
+          in: query
+          type: boolean
+          description: If true, web app metrics are also deleted.
+        - name: deleteEmptyServerFarm
+          in: query
+          type: boolean
+          description: Specify false if you want to keep empty App Service plan. By default, empty App Service plan is deleted.
+      - name: webappsget
+        method: GET
+        description: Azure Functions Gets the Details of a Web, Mobile, or API App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+      - name: webappsupdate
+        method: PATCH
+        description: Azure Functions Creates a New Web, Mobile, or API App in an Existing Resource Group, or Updates an Existing
+          App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter.
+          required: true
+        - name: siteEnvelope
+          in: body
+          type: string
+          description: A JSON representation of the app properties. See example.
+          required: true
+      - name: webappscreateorupdate
+        method: PUT
+        description: Azure Functions Creates a New Web, Mobile, or API App in an Existing Resource Group, or Updates an Existing
+          App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter.
+          required: true
+        - name: siteEnvelope
+          in: body
+          type: object
+          description: A JSON representation of the app properties. See example.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/analyzeCustomHostname
+      operations:
+      - name: webappsanalyzecustomhostname
+        method: GET
+        description: Azure Functions Analyze a Custom Hostname.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of web app.
+          required: true
+        - name: hostName
+          in: query
+          type: string
+          description: Custom hostname.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/applySlotConfig
+      operations:
+      - name: webappsapplyslotconfigtoproduction
+        method: POST
+        description: Azure Functions Applies the Configuration Settings from the Target Slot Onto the Current Slot.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: slotSwapEntity
+          in: body
+          type: string
+          description: JSON object that contains the target slot name. See example.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backup
+      operations:
+      - name: webappsbackup
+        method: POST
+        description: Azure Functions Creates a Backup of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: request
+          in: body
+          type: string
+          description: Backup configuration. You can use the JSON response from the POST action as input here.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backups
+      operations:
+      - name: webappslistbackups
+        method: GET
+        description: Azure Functions Gets Existing Backups of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backups/{backupId}
+      operations:
+      - name: webappsdeletebackup
+        method: DELETE
+        description: Azure Functions Deletes a Backup of an App by its ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: backupId
+          in: path
+          type: string
+          description: ID of the backup.
+          required: true
+      - name: webappsgetbackupstatus
+        method: GET
+        description: Azure Functions Gets a Backup of an App by its ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: backupId
+          in: path
+          type: string
+          description: ID of the backup.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backups/{backupId}/list
+      operations:
+      - name: webappslistbackupstatussecrets
+        method: POST
+        description: Azure Functions Gets Status of a Web App Backup That May Be in Progress, Including Secrets Associated
+          with the Backup, Such as the Azure Storage SAS URL. Also Can Be Used to Update the SAS URL for the Backup if a New
+          URL is Passed in the Re
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of web app.
+          required: true
+        - name: backupId
+          in: path
+          type: string
+          description: ID of backup.
+          required: true
+        - name: request
+          in: body
+          type: string
+          description: Information on backup request.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backups/{backupId}/restore
+      operations:
+      - name: webappsrestore
+        method: POST
+        description: Azure Functions Restores a Specific Backup to Another App (or Deployment Slot, if Specified).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: backupId
+          in: path
+          type: string
+          description: ID of the backup.
+          required: true
+        - name: request
+          in: body
+          type: string
+          description: Information on restore request .
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config
+      operations:
+      - name: webappslistconfigurations
+        method: GET
+        description: Azure Functions List the Configurations of an App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/appsettings
+      operations:
+      - name: webappsupdateapplicationsettings
+        method: PUT
+        description: Azure Functions Replaces the Application Settings of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: appSettings
+          in: body
+          type: string
+          description: Application settings of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/appsettings/list
+      operations:
+      - name: webappslistapplicationsettings
+        method: POST
+        description: Azure Functions Gets the Application Settings of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/authsettings
+      operations:
+      - name: webappsupdateauthsettings
+        method: PUT
+        description: Azure Functions Updates the Authentication / Authorization Settings Associated with Web App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of web app.
+          required: true
+        - name: siteAuthSettings
+          in: body
+          type: string
+          description: Auth settings associated with web app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/authsettings/list
+      operations:
+      - name: webappsgetauthsettings
+        method: POST
+        description: Azure Functions Gets the Authentication/Authorization Settings of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/azurestorageaccounts
+      operations:
+      - name: webappsupdateazurestorageaccounts
+        method: PUT
+        description: Azure Functions Updates the Azure Storage Account Configurations of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: azureStorageAccounts
+          in: body
+          type: string
+          description: Azure storage accounts of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/azurestorageaccounts/list
+      operations:
+      - name: webappslistazurestorageaccounts
+        method: POST
+        description: Azure Functions Gets the Azure Storage Account Configurations of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/backup
+      operations:
+      - name: webappsdeletebackupconfiguration
+        method: DELETE
+        description: Azure Functions Deletes the Backup Configuration of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+      - name: webappsupdatebackupconfiguration
+        method: PUT
+        description: Azure Functions Updates the Backup Configuration of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: request
+          in: body
+          type: string
+          description: Edited backup configuration.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/backup/list
+      operations:
+      - name: webappsgetbackupconfiguration
+        method: POST
+        description: Azure Functions Gets the Backup Configuration of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/configreferences/appsettings
+      operations:
+      - name: webappsgetappsettingskeyvaultreferences
+        method: GET
+        description: Azure Functions Gets the Config Reference App Settings and Status of an App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/configreferences/appsettings/{appSettingKey}
+      operations:
+      - name: webappsgetappsettingkeyvaultreference
+        method: GET
+        description: Azure Functions Gets the Config Reference and Status of an App
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: appSettingKey
+          in: path
+          type: string
+          description: App Setting key name.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/connectionstrings
+      operations:
+      - name: webappsupdateconnectionstrings
+        method: PUT
+        description: Azure Functions Replaces the Connection Strings of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: connectionStrings
+          in: body
+          type: string
+          description: Connection strings of the app or deployment slot. See example.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/connectionstrings/list
+      operations:
+      - name: webappslistconnectionstrings
+        method: POST
+        description: Azure Functions Gets the Connection Strings of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/logs
+      operations:
+      - name: webappsgetdiagnosticlogsconfiguration
+        method: GET
+        description: Azure Functions Gets the Logging Configuration of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+      - name: webappsupdatediagnosticlogsconfig
+        method: PUT
+        description: Azure Functions Updates the Logging Configuration of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: siteLogsConfig
+          in: body
+          type: string
+          description: A SiteLogsConfig JSON object that contains the logging configuration to change in the "properties"
+            property.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/metadata
+      operations:
+      - name: webappsupdatemetadata
+        method: PUT
+        description: Azure Functions Replaces the Metadata of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: metadata
+          in: body
+          type: string
+          description: Edited metadata of the app or deployment slot. See example.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/metadata/list
+      operations:
+      - name: webappslistmetadata
+        method: POST
+        description: Azure Functions Gets the Metadata of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/publishingcredentials/list
+      operations:
+      - name: webappslistpublishingcredentials
+        method: POST
+        description: Azure Functions Gets the Git/FTP Publishing Credentials of an App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/pushsettings
+      operations:
+      - name: webappsupdatesitepushsettings
+        method: PUT
+        description: Azure Functions Updates the Push Settings Associated with Web App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of web app.
+          required: true
+        - name: pushSettings
+          in: body
+          type: object
+          description: Push settings associated with web app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/pushsettings/list
+      operations:
+      - name: webappslistsitepushsettings
+        method: POST
+        description: Azure Functions Gets the Push Settings Associated with Web App.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of web app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/slotConfigNames
+      operations:
+      - name: webappslistslotconfigurationnames
+        method: GET
+        description: Azure Functions Gets the Names of App Settings and Connection Strings That Stick to the Slot (not Swapped).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+      - name: webappsupdateslotconfigurationnames
+        method: PUT
+        description: Azure Functions Updates the Names of Application Settings and Connection String That Remain with the
+          Slot During Swap Operation.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: slotConfigNames
+          in: body
+          type: string
+          description: Names of application settings and connection strings. See example.
+          required: true
+  exposes:
+  - type: rest
+    namespace: azure-functions-webapps-rest
+    port: 8080
+    description: REST adapter for Azure Functions Management API — WebApps. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/providers/microsoft-web/sites
+      name: subscriptions-subscriptionid-providers-microsoft-web-sites
+      description: REST surface for subscriptions-subscriptionId-providers-Microsoft.Web-sites.
+      operations:
+      - method: GET
+        name: webappslist
+        description: Azure Functions Get All Apps for a Subscription.
+        call: azure-functions-webapps.webappslist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: webappslistbyresourcegroup
+        description: Azure Functions Gets All Web, Mobile, and API Apps in the Specified Resource Group.
+        call: azure-functions-webapps.webappslistbyresourcegroup
+        with:
+          includeSlots: rest.includeSlots
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: DELETE
+        name: webappsdelete
+        description: Azure Functions Deletes a Web, Mobile, or API App, or One of the Deployment Slots.
+        call: azure-functions-webapps.webappsdelete
+        with:
+          name: rest.name
+          deleteMetrics: rest.deleteMetrics
+          deleteEmptyServerFarm: rest.deleteEmptyServerFarm
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: webappsget
+        description: Azure Functions Gets the Details of a Web, Mobile, or API App.
+        call: azure-functions-webapps.webappsget
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: webappsupdate
+        description: Azure Functions Creates a New Web, Mobile, or API App in an Existing Resource Group, or Updates an Existing
+          App.
+        call: azure-functions-webapps.webappsupdate
+        with:
+          name: rest.name
+          siteEnvelope: rest.siteEnvelope
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: webappscreateorupdate
+        description: Azure Functions Creates a New Web, Mobile, or API App in an Existing Resource Group, or Updates an Existing
+          App.
+        call: azure-functions-webapps.webappscreateorupdate
+        with:
+          name: rest.name
+          siteEnvelope: rest.siteEnvelope
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/analyzecustomhostname
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: webappsanalyzecustomhostname
+        description: Azure Functions Analyze a Custom Hostname.
+        call: azure-functions-webapps.webappsanalyzecustomhostname
+        with:
+          name: rest.name
+          hostName: rest.hostName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/applyslotconfig
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: webappsapplyslotconfigtoproduction
+        description: Azure Functions Applies the Configuration Settings from the Target Slot Onto the Current Slot.
+        call: azure-functions-webapps.webappsapplyslotconfigtoproduction
+        with:
+          name: rest.name
+          slotSwapEntity: rest.slotSwapEntity
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/backup
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: webappsbackup
+        description: Azure Functions Creates a Backup of an App.
+        call: azure-functions-webapps.webappsbackup
+        with:
+          name: rest.name
+          request: rest.request
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/backups
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: webappslistbackups
+        description: Azure Functions Gets Existing Backups of an App.
+        call: azure-functions-webapps.webappslistbackups
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/backups/{backupid}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: DELETE
+        name: webappsdeletebackup
+        description: Azure Functions Deletes a Backup of an App by its ID.
+        call: azure-functions-webapps.webappsdeletebackup
+        with:
+          name: rest.name
+          backupId: rest.backupId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: webappsgetbackupstatus
+        description: Azure Functions Gets a Backup of an App by its ID.
+        call: azure-functions-webapps.webappsgetbackupstatus
+        with:
+          name: rest.name
+          backupId: rest.backupId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/backups/{backupid}/list
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: webappslistbackupstatussecrets
+        description: Azure Functions Gets Status of a Web App Backup That May Be in Progress, Including Secrets Associated
+          with the Backup, Such as the Azure Storage SAS URL. Also Can Be Used to Update the SAS URL for the Backup if a New
+          URL is Passed in the Re
+        call: azure-functions-webapps.webappslistbackupstatussecrets
+        with:
+          name: rest.name
+          backupId: rest.backupId
+          request: rest.request
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/backups/{backupid}/restore
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: webappsrestore
+        description: Azure Functions Restores a Specific Backup to Another App (or Deployment Slot, if Specified).
+        call: azure-functions-webapps.webappsrestore
+        with:
+          name: rest.name
+          backupId: rest.backupId
+          request: rest.request
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: webappslistconfigurations
+        description: Azure Functions List the Configurations of an App
+        call: azure-functions-webapps.webappslistconfigurations
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/appsettings
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: PUT
+        name: webappsupdateapplicationsettings
+        description: Azure Functions Replaces the Application Settings of an App.
+        call: azure-functions-webapps.webappsupdateapplicationsettings
+        with:
+          name: rest.name
+          appSettings: rest.appSettings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/appsettings/list
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: webappslistapplicationsettings
+        description: Azure Functions Gets the Application Settings of an App.
+        call: azure-functions-webapps.webappslistapplicationsettings
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/authsettings
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: PUT
+        name: webappsupdateauthsettings
+        description: Azure Functions Updates the Authentication / Authorization Settings Associated with Web App.
+        call: azure-functions-webapps.webappsupdateauthsettings
+        with:
+          name: rest.name
+          siteAuthSettings: rest.siteAuthSettings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/authsettings/list
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: webappsgetauthsettings
+        description: Azure Functions Gets the Authentication/Authorization Settings of an App.
+        call: azure-functions-webapps.webappsgetauthsettings
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/azurestorageaccounts
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: PUT
+        name: webappsupdateazurestorageaccounts
+        description: Azure Functions Updates the Azure Storage Account Configurations of an App.
+        call: azure-functions-webapps.webappsupdateazurestorageaccounts
+        with:
+          name: rest.name
+          azureStorageAccounts: rest.azureStorageAccounts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/azurestorageaccounts/list
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: webappslistazurestorageaccounts
+        description: Azure Functions Gets the Azure Storage Account Configurations of an App.
+        call: azure-functions-webapps.webappslistazurestorageaccounts
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/backup
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: DELETE
+        name: webappsdeletebackupconfiguration
+        description: Azure Functions Deletes the Backup Configuration of an App.
+        call: azure-functions-webapps.webappsdeletebackupconfiguration
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: webappsupdatebackupconfiguration
+        description: Azure Functions Updates the Backup Configuration of an App.
+        call: azure-functions-webapps.webappsupdatebackupconfiguration
+        with:
+          name: rest.name
+          request: rest.request
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/backup/list
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: webappsgetbackupconfiguration
+        description: Azure Functions Gets the Backup Configuration of an App.
+        call: azure-functions-webapps.webappsgetbackupconfiguration
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/configreferences/appsettings
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: webappsgetappsettingskeyvaultreferences
+        description: Azure Functions Gets the Config Reference App Settings and Status of an App
+        call: azure-functions-webapps.webappsgetappsettingskeyvaultreferences
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/configreferences/appsettings/{appsettingkey}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: webappsgetappsettingkeyvaultreference
+        description: Azure Functions Gets the Config Reference and Status of an App
+        call: azure-functions-webapps.webappsgetappsettingkeyvaultreference
+        with:
+          name: rest.name
+          appSettingKey: rest.appSettingKey
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/connectionstrings
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: PUT
+        name: webappsupdateconnectionstrings
+        description: Azure Functions Replaces the Connection Strings of an App.
+        call: azure-functions-webapps.webappsupdateconnectionstrings
+        with:
+          name: rest.name
+          connectionStrings: rest.connectionStrings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/connectionstrings/list
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: webappslistconnectionstrings
+        description: Azure Functions Gets the Connection Strings of an App.
+        call: azure-functions-webapps.webappslistconnectionstrings
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/logs
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: webappsgetdiagnosticlogsconfiguration
+        description: Azure Functions Gets the Logging Configuration of an App.
+        call: azure-functions-webapps.webappsgetdiagnosticlogsconfiguration
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: webappsupdatediagnosticlogsconfig
+        description: Azure Functions Updates the Logging Configuration of an App.
+        call: azure-functions-webapps.webappsupdatediagnosticlogsconfig
+        with:
+          name: rest.name
+          siteLogsConfig: rest.siteLogsConfig
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/metadata
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: PUT
+        name: webappsupdatemetadata
+        description: Azure Functions Replaces the Metadata of an App.
+        call: azure-functions-webapps.webappsupdatemetadata
+        with:
+          name: rest.name
+          metadata: rest.metadata
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/metadata/list
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: webappslistmetadata
+        description: Azure Functions Gets the Metadata of an App.
+        call: azure-functions-webapps.webappslistmetadata
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/publishingcredentials/list
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: webappslistpublishingcredentials
+        description: Azure Functions Gets the Git/FTP Publishing Credentials of an App.
+        call: azure-functions-webapps.webappslistpublishingcredentials
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/pushsettings
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: PUT
+        name: webappsupdatesitepushsettings
+        description: Azure Functions Updates the Push Settings Associated with Web App.
+        call: azure-functions-webapps.webappsupdatesitepushsettings
+        with:
+          name: rest.name
+          pushSettings: rest.pushSettings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/pushsettings/list
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: webappslistsitepushsettings
+        description: Azure Functions Gets the Push Settings Associated with Web App.
+        call: azure-functions-webapps.webappslistsitepushsettings
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/config/slotconfignames
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: webappslistslotconfigurationnames
+        description: Azure Functions Gets the Names of App Settings and Connection Strings That Stick to the Slot (not Swapped).
+        call: azure-functions-webapps.webappslistslotconfigurationnames
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: webappsupdateslotconfigurationnames
+        description: Azure Functions Updates the Names of Application Settings and Connection String That Remain with the
+          Slot During Swap Operation.
+        call: azure-functions-webapps.webappsupdateslotconfigurationnames
+        with:
+          name: rest.name
+          slotConfigNames: rest.slotConfigNames
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-functions-webapps-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Azure Functions Management API — WebApps. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: azure-functions-get-all-apps
+      description: Azure Functions Get All Apps for a Subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappslist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-all-web
+      description: Azure Functions Gets All Web, Mobile, and API Apps in the Specified Resource Group.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappslistbyresourcegroup
+      with:
+        includeSlots: tools.includeSlots
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-deletes-web-mobile
+      description: Azure Functions Deletes a Web, Mobile, or API App, or One of the Deployment Slots.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: azure-functions-webapps.webappsdelete
+      with:
+        name: tools.name
+        deleteMetrics: tools.deleteMetrics
+        deleteEmptyServerFarm: tools.deleteEmptyServerFarm
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-details-web
+      description: Azure Functions Gets the Details of a Web, Mobile, or API App.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsget
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-creates-new-web
+      description: Azure Functions Creates a New Web, Mobile, or API App in an Existing Resource Group, or Updates an Existing
+        App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsupdate
+      with:
+        name: tools.name
+        siteEnvelope: tools.siteEnvelope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-creates-new-web-2
+      description: Azure Functions Creates a New Web, Mobile, or API App in an Existing Resource Group, or Updates an Existing
+        App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappscreateorupdate
+      with:
+        name: tools.name
+        siteEnvelope: tools.siteEnvelope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-analyze-custom-hostname
+      description: Azure Functions Analyze a Custom Hostname.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsanalyzecustomhostname
+      with:
+        name: tools.name
+        hostName: tools.hostName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-applies-configuration-settings
+      description: Azure Functions Applies the Configuration Settings from the Target Slot Onto the Current Slot.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: azure-functions-webapps.webappsapplyslotconfigtoproduction
+      with:
+        name: tools.name
+        slotSwapEntity: tools.slotSwapEntity
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-creates-backup-app
+      description: Azure Functions Creates a Backup of an App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-webapps.webappsbackup
+      with:
+        name: tools.name
+        request: tools.request
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-existing-backups
+      description: Azure Functions Gets Existing Backups of an App.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappslistbackups
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-deletes-backup-app
+      description: Azure Functions Deletes a Backup of an App by its ID.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: azure-functions-webapps.webappsdeletebackup
+      with:
+        name: tools.name
+        backupId: tools.backupId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-backup-app
+      description: Azure Functions Gets a Backup of an App by its ID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsgetbackupstatus
+      with:
+        name: tools.name
+        backupId: tools.backupId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-status-web
+      description: Azure Functions Gets Status of a Web App Backup That May Be in Progress, Including Secrets Associated with
+        the Backup, Such as the Azure Storage SAS URL. Also Can Be Used to Update the SAS URL for the Backup if a New URL
+        is Passed in the Re
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-webapps.webappslistbackupstatussecrets
+      with:
+        name: tools.name
+        backupId: tools.backupId
+        request: tools.request
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-restores-specific-backup
+      description: Azure Functions Restores a Specific Backup to Another App (or Deployment Slot, if Specified).
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-webapps.webappsrestore
+      with:
+        name: tools.name
+        backupId: tools.backupId
+        request: tools.request
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-list-configurations-app
+      description: Azure Functions List the Configurations of an App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappslistconfigurations
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-replaces-application-settings
+      description: Azure Functions Replaces the Application Settings of an App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsupdateapplicationsettings
+      with:
+        name: tools.name
+        appSettings: tools.appSettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-application-settings
+      description: Azure Functions Gets the Application Settings of an App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-webapps.webappslistapplicationsettings
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-updates-authentication-authorization
+      description: Azure Functions Updates the Authentication / Authorization Settings Associated with Web App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsupdateauthsettings
+      with:
+        name: tools.name
+        siteAuthSettings: tools.siteAuthSettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-authentication-authorization
+      description: Azure Functions Gets the Authentication/Authorization Settings of an App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-webapps.webappsgetauthsettings
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-updates-azure-storage
+      description: Azure Functions Updates the Azure Storage Account Configurations of an App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsupdateazurestorageaccounts
+      with:
+        name: tools.name
+        azureStorageAccounts: tools.azureStorageAccounts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-azure-storage
+      description: Azure Functions Gets the Azure Storage Account Configurations of an App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-webapps.webappslistazurestorageaccounts
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-deletes-backup-configuration
+      description: Azure Functions Deletes the Backup Configuration of an App.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: azure-functions-webapps.webappsdeletebackupconfiguration
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-updates-backup-configuration
+      description: Azure Functions Updates the Backup Configuration of an App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsupdatebackupconfiguration
+      with:
+        name: tools.name
+        request: tools.request
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-backup-configuration
+      description: Azure Functions Gets the Backup Configuration of an App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-webapps.webappsgetbackupconfiguration
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-config-reference
+      description: Azure Functions Gets the Config Reference App Settings and Status of an App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsgetappsettingskeyvaultreferences
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-config-reference-2
+      description: Azure Functions Gets the Config Reference and Status of an App
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsgetappsettingkeyvaultreference
+      with:
+        name: tools.name
+        appSettingKey: tools.appSettingKey
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-replaces-connection-strings
+      description: Azure Functions Replaces the Connection Strings of an App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsupdateconnectionstrings
+      with:
+        name: tools.name
+        connectionStrings: tools.connectionStrings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-connection-strings
+      description: Azure Functions Gets the Connection Strings of an App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-webapps.webappslistconnectionstrings
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-logging-configuration
+      description: Azure Functions Gets the Logging Configuration of an App.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsgetdiagnosticlogsconfiguration
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-updates-logging-configuration
+      description: Azure Functions Updates the Logging Configuration of an App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsupdatediagnosticlogsconfig
+      with:
+        name: tools.name
+        siteLogsConfig: tools.siteLogsConfig
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-replaces-metadata-app
+      description: Azure Functions Replaces the Metadata of an App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsupdatemetadata
+      with:
+        name: tools.name
+        metadata: tools.metadata
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-metadata-app
+      description: Azure Functions Gets the Metadata of an App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-webapps.webappslistmetadata
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-git-ftp
+      description: Azure Functions Gets the Git/FTP Publishing Credentials of an App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-webapps.webappslistpublishingcredentials
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-updates-push-settings
+      description: Azure Functions Updates the Push Settings Associated with Web App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsupdatesitepushsettings
+      with:
+        name: tools.name
+        pushSettings: tools.pushSettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-push-settings
+      description: Azure Functions Gets the Push Settings Associated with Web App.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-webapps.webappslistsitepushsettings
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-gets-names-app
+      description: Azure Functions Gets the Names of App Settings and Connection Strings That Stick to the Slot (not Swapped).
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappslistslotconfigurationnames
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-functions-updates-names-application
+      description: Azure Functions Updates the Names of Application Settings and Connection String That Remain with the Slot
+        During Swap Operation.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-webapps.webappsupdateslotconfigurationnames
+      with:
+        name: tools.name
+        slotConfigNames: tools.slotConfigNames
+      outputParameters:
+      - type: object
+        mapping: $.
