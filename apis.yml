@@ -45,7 +45,7 @@ apis:
     url: https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook
   - type: OpenAPI
     url: https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/openapi/azure-functions-openapi.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/azure-functions-webapps.yaml
 common:
 - type: Portal
