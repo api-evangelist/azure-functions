@@ -1,16 +1,18 @@
 swagger: '2.0'
 info:
-  title: Azure Functions Management API
+  title: Azure Functions Management WebApps API
   description: REST API for managing Azure Function Apps and Azure Functions resources.
   version: '2022-09-01'
 host: management.azure.com
+basePath: /
 schemes:
 - https
-basePath: /
 consumes:
 - application/json
 produces:
 - application/json
+tags:
+- name: WebApps
 paths:
   /subscriptions/{subscriptionId}/providers/Microsoft.Web/sites:
     get:
@@ -96,7 +98,7 @@ paths:
                                 readOnly: true
                                 type: string
                             type: object
-                          description: "The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}"
+                          description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
                           type: object
                       type: object
                     properties:
@@ -114,8 +116,7 @@ paths:
                             modelAsString: false
                             name: SiteAvailabilityState
                         clientAffinityEnabled:
-                          description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the 
-                            same instance. Default is <code>true</code>.
+                          description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same instance. Default is <code>true</code>.
                           type: boolean
                         clientCertEnabled:
                           description: <code>true</code> to enable client certificate authentication (TLS mutual authentication); otherwise, <code>false</code>. Default is <code>false</code>.
@@ -129,8 +130,7 @@ paths:
                             appSettingsOverrides:
                               additionalProperties:
                                 type: string
-                              description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from
-                                source app are retained."
+                              description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from source app are retained."
                               type: object
                             cloneCustomHostNames:
                               description: <code>true</code> to clone custom hostnames from source app; otherwise, <code>false</code>.
@@ -142,7 +142,9 @@ paths:
                               description: <code>true</code> to configure load balancing for source and destination app.
                               type: boolean
                             correlationId:
-                              description: "Correlation ID of cloning operation. This ID ties multiple cloning operations\ntogether to use the same snapshot."
+                              description: 'Correlation ID of cloning operation. This ID ties multiple cloning operations
+
+                                together to use the same snapshot.'
                               example: 00000000-0000-0000-0000-000000000000
                               format: uuid
                               type: string
@@ -153,8 +155,7 @@ paths:
                               description: <code>true</code> to overwrite destination app; otherwise, <code>false</code>.
                               type: boolean
                             sourceWebAppId:
-                              description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}
-                                for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
+                              description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName} for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
                               type: string
                             sourceWebAppLocation:
                               description: 'Location of source app ex: West US or North Europe'
@@ -184,7 +185,9 @@ paths:
                           description: <code>true</code> if the app is enabled; otherwise, <code>false</code>. Setting this value to false disables the app (takes the app offline).
                           type: boolean
                         enabledHostNames:
-                          description: "Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,\nthe app is not served on those hostnames."
+                          description: 'Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
+
+                            the app is not served on those hostnames.'
                           items:
                             type: string
                           readOnly: true
@@ -234,8 +237,7 @@ paths:
                           readOnly: true
                           type: array
                         hostNamesDisabled:
-                          description: "<code>true</code> to disable the public hostnames of the app; otherwise, <code>false</code>.\n If <code>true</code>, the app is only accessible via API management
-                            process."
+                          description: "<code>true</code> to disable the public hostnames of the app; otherwise, <code>false</code>.\n If <code>true</code>, the app is only accessible via API management process."
                           type: boolean
                         hostingEnvironmentProfile:
                           description: Specification for an App Service Environment to use for this resource.
@@ -253,7 +255,9 @@ paths:
                               type: string
                           type: object
                         httpsOnly:
-                          description: "HttpsOnly: configures a web site to accept only https requests. Issues redirect for\nhttp requests"
+                          description: 'HttpsOnly: configures a web site to accept only https requests. Issues redirect for
+
+                            http requests'
                           type: boolean
                         hyperV:
                           default: false
@@ -285,13 +289,14 @@ paths:
                           readOnly: true
                           type: string
                         maxNumberOfWorkers:
-                          description: "Maximum number of workers.\nThis only applies to Functions container."
+                          description: 'Maximum number of workers.
+
+                            This only applies to Functions container.'
                           format: int32
                           readOnly: true
                           type: integer
                         outboundIpAddresses:
-                          description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings.
-                            Read-only.
+                          description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.
                           readOnly: true
                           type: string
                         possibleOutboundIpAddresses:
@@ -388,7 +393,9 @@ paths:
                                         modelAsString: false
                                         name: AutoHealActionType
                                     customAction:
-                                      description: "Custom action to be executed\nwhen an auto heal rule is triggered."
+                                      description: 'Custom action to be executed
+
+                                        when an auto heal rule is triggered.'
                                       properties:
                                         exe:
                                           description: Executable to be run.
@@ -398,7 +405,9 @@ paths:
                                           type: string
                                       type: object
                                     minProcessExecutionTime:
-                                      description: "Minimum time the process must execute\nbefore taking the action"
+                                      description: 'Minimum time the process must execute
+
+                                        before taking the action'
                                       type: string
                                   type: object
                                 triggers:
@@ -499,13 +508,14 @@ paths:
                               description: Cross-Origin Resource Sharing (CORS) settings for the app.
                               properties:
                                 allowedOrigins:
-                                  description: "Gets or sets the list of origins that should be allowed to make cross-origin\ncalls (for example: http://example.com:12345). Use \"*\" to allow all."
+                                  description: 'Gets or sets the list of origins that should be allowed to make cross-origin
+
+                                    calls (for example: http://example.com:12345). Use "*" to allow all.'
                                   items:
                                     type: string
                                   type: array
                                 supportCredentials:
-                                  description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\n\
-                                    for more details."
+                                  description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\nfor more details."
                                   type: boolean
                               type: object
                             defaultDocuments:
@@ -531,17 +541,16 @@ paths:
                                         description: Hostname of a slot to which the traffic will be redirected if decided to. E.g. myapp-stage.azurewebsites.net.
                                         type: string
                                       changeDecisionCallbackUrl:
-                                        description: "Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold
-                                          and contracts.\nhttps://www.siteextensions.net/packages/TiPCallback/"
+                                        description: 'Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold and contracts.
+
+                                          https://www.siteextensions.net/packages/TiPCallback/'
                                         type: string
                                       changeIntervalInMinutes:
                                         description: Specifies interval in minutes to reevaluate ReroutePercentage.
                                         format: int32
                                         type: integer
                                       changeStep:
-                                        description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or\
-                                          \ \n<code>MaxReroutePercentage</code>. Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \n\
-                                          can be provided in TiPCallback site extension which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
+                                        description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or \n<code>MaxReroutePercentage</code>. Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \ncan be provided in TiPCallback site extension which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
                                         format: double
                                         type: number
                                       maxReroutePercentage:
@@ -575,8 +584,7 @@ paths:
                             handlerMappings:
                               description: Handler mappings.
                               items:
-                                description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process
-                                  to handle all HTTP requests with *.php extension."
+                                description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process to handle all HTTP requests with *.php extension."
                                 properties:
                                   arguments:
                                     description: Command-line arguments to be passed to the script processor.
@@ -611,8 +619,13 @@ paths:
                                     description: IP restriction rule description.
                                     type: string
                                   ipAddress:
-                                    description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask
-                                      (leading bit match). For CIDR,\nSubnetMask property must not be specified."
+                                    description: 'IP address the security restriction is valid for.
+
+                                      It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                                      CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                                      SubnetMask property must not be specified.'
                                     type: string
                                   name:
                                     description: IP restriction rule name.
@@ -748,7 +761,9 @@ paths:
                               description: Version of PHP.
                               type: string
                             preWarmedInstanceCount:
-                              description: "Number of preWarmed instances.\nThis setting only applies to the Consumption and Elastic Plans"
+                              description: 'Number of preWarmed instances.
+
+                                This setting only applies to the Consumption and Elastic Plans'
                               format: int32
                               maximum: 10
                               minimum: 0
@@ -791,8 +806,7 @@ paths:
                                       description: Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
                                       type: string
                                     tagsRequiringAuth:
-                                      description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist
-                                        of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
+                                      description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
                                       type: string
                                   required:
                                   - isPushEnabled
@@ -826,8 +840,13 @@ paths:
                                     description: IP restriction rule description.
                                     type: string
                                   ipAddress:
-                                    description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask
-                                      (leading bit match). For CIDR,\nSubnetMask property must not be specified."
+                                    description: 'IP address the security restriction is valid for.
+
+                                      It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                                      CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                                      SubnetMask property must not be specified.'
                                     type: string
                                   name:
                                     description: IP restriction rule name.
@@ -1132,7 +1151,7 @@ paths:
                                 readOnly: true
                                 type: string
                             type: object
-                          description: "The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}"
+                          description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
                           type: object
                       type: object
                     properties:
@@ -1150,8 +1169,7 @@ paths:
                             modelAsString: false
                             name: SiteAvailabilityState
                         clientAffinityEnabled:
-                          description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the 
-                            same instance. Default is <code>true</code>.
+                          description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same instance. Default is <code>true</code>.
                           type: boolean
                         clientCertEnabled:
                           description: <code>true</code> to enable client certificate authentication (TLS mutual authentication); otherwise, <code>false</code>. Default is <code>false</code>.
@@ -1165,8 +1183,7 @@ paths:
                             appSettingsOverrides:
                               additionalProperties:
                                 type: string
-                              description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from
-                                source app are retained."
+                              description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from source app are retained."
                               type: object
                             cloneCustomHostNames:
                               description: <code>true</code> to clone custom hostnames from source app; otherwise, <code>false</code>.
@@ -1178,7 +1195,9 @@ paths:
                               description: <code>true</code> to configure load balancing for source and destination app.
                               type: boolean
                             correlationId:
-                              description: "Correlation ID of cloning operation. This ID ties multiple cloning operations\ntogether to use the same snapshot."
+                              description: 'Correlation ID of cloning operation. This ID ties multiple cloning operations
+
+                                together to use the same snapshot.'
                               example: 00000000-0000-0000-0000-000000000000
                               format: uuid
                               type: string
@@ -1189,8 +1208,7 @@ paths:
                               description: <code>true</code> to overwrite destination app; otherwise, <code>false</code>.
                               type: boolean
                             sourceWebAppId:
-                              description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}
-                                for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
+                              description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName} for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
                               type: string
                             sourceWebAppLocation:
                               description: 'Location of source app ex: West US or North Europe'
@@ -1220,7 +1238,9 @@ paths:
                           description: <code>true</code> if the app is enabled; otherwise, <code>false</code>. Setting this value to false disables the app (takes the app offline).
                           type: boolean
                         enabledHostNames:
-                          description: "Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,\nthe app is not served on those hostnames."
+                          description: 'Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
+
+                            the app is not served on those hostnames.'
                           items:
                             type: string
                           readOnly: true
@@ -1270,8 +1290,7 @@ paths:
                           readOnly: true
                           type: array
                         hostNamesDisabled:
-                          description: "<code>true</code> to disable the public hostnames of the app; otherwise, <code>false</code>.\n If <code>true</code>, the app is only accessible via API management
-                            process."
+                          description: "<code>true</code> to disable the public hostnames of the app; otherwise, <code>false</code>.\n If <code>true</code>, the app is only accessible via API management process."
                           type: boolean
                         hostingEnvironmentProfile:
                           description: Specification for an App Service Environment to use for this resource.
@@ -1289,7 +1308,9 @@ paths:
                               type: string
                           type: object
                         httpsOnly:
-                          description: "HttpsOnly: configures a web site to accept only https requests. Issues redirect for\nhttp requests"
+                          description: 'HttpsOnly: configures a web site to accept only https requests. Issues redirect for
+
+                            http requests'
                           type: boolean
                         hyperV:
                           default: false
@@ -1321,13 +1342,14 @@ paths:
                           readOnly: true
                           type: string
                         maxNumberOfWorkers:
-                          description: "Maximum number of workers.\nThis only applies to Functions container."
+                          description: 'Maximum number of workers.
+
+                            This only applies to Functions container.'
                           format: int32
                           readOnly: true
                           type: integer
                         outboundIpAddresses:
-                          description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings.
-                            Read-only.
+                          description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.
                           readOnly: true
                           type: string
                         possibleOutboundIpAddresses:
@@ -1424,7 +1446,9 @@ paths:
                                         modelAsString: false
                                         name: AutoHealActionType
                                     customAction:
-                                      description: "Custom action to be executed\nwhen an auto heal rule is triggered."
+                                      description: 'Custom action to be executed
+
+                                        when an auto heal rule is triggered.'
                                       properties:
                                         exe:
                                           description: Executable to be run.
@@ -1434,7 +1458,9 @@ paths:
                                           type: string
                                       type: object
                                     minProcessExecutionTime:
-                                      description: "Minimum time the process must execute\nbefore taking the action"
+                                      description: 'Minimum time the process must execute
+
+                                        before taking the action'
                                       type: string
                                   type: object
                                 triggers:
@@ -1535,13 +1561,14 @@ paths:
                               description: Cross-Origin Resource Sharing (CORS) settings for the app.
                               properties:
                                 allowedOrigins:
-                                  description: "Gets or sets the list of origins that should be allowed to make cross-origin\ncalls (for example: http://example.com:12345). Use \"*\" to allow all."
+                                  description: 'Gets or sets the list of origins that should be allowed to make cross-origin
+
+                                    calls (for example: http://example.com:12345). Use "*" to allow all.'
                                   items:
                                     type: string
                                   type: array
                                 supportCredentials:
-                                  description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\n\
-                                    for more details."
+                                  description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\nfor more details."
                                   type: boolean
                               type: object
                             defaultDocuments:
@@ -1567,17 +1594,16 @@ paths:
                                         description: Hostname of a slot to which the traffic will be redirected if decided to. E.g. myapp-stage.azurewebsites.net.
                                         type: string
                                       changeDecisionCallbackUrl:
-                                        description: "Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold
-                                          and contracts.\nhttps://www.siteextensions.net/packages/TiPCallback/"
+                                        description: 'Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold and contracts.
+
+                                          https://www.siteextensions.net/packages/TiPCallback/'
                                         type: string
                                       changeIntervalInMinutes:
                                         description: Specifies interval in minutes to reevaluate ReroutePercentage.
                                         format: int32
                                         type: integer
                                       changeStep:
-                                        description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or\
-                                          \ \n<code>MaxReroutePercentage</code>. Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \n\
-                                          can be provided in TiPCallback site extension which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
+                                        description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or \n<code>MaxReroutePercentage</code>. Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \ncan be provided in TiPCallback site extension which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
                                         format: double
                                         type: number
                                       maxReroutePercentage:
@@ -1611,8 +1637,7 @@ paths:
                             handlerMappings:
                               description: Handler mappings.
                               items:
-                                description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process
-                                  to handle all HTTP requests with *.php extension."
+                                description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process to handle all HTTP requests with *.php extension."
                                 properties:
                                   arguments:
                                     description: Command-line arguments to be passed to the script processor.
@@ -1647,8 +1672,13 @@ paths:
                                     description: IP restriction rule description.
                                     type: string
                                   ipAddress:
-                                    description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask
-                                      (leading bit match). For CIDR,\nSubnetMask property must not be specified."
+                                    description: 'IP address the security restriction is valid for.
+
+                                      It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                                      CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                                      SubnetMask property must not be specified.'
                                     type: string
                                   name:
                                     description: IP restriction rule name.
@@ -1784,7 +1814,9 @@ paths:
                               description: Version of PHP.
                               type: string
                             preWarmedInstanceCount:
-                              description: "Number of preWarmed instances.\nThis setting only applies to the Consumption and Elastic Plans"
+                              description: 'Number of preWarmed instances.
+
+                                This setting only applies to the Consumption and Elastic Plans'
                               format: int32
                               maximum: 10
                               minimum: 0
@@ -1827,8 +1859,7 @@ paths:
                                       description: Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
                                       type: string
                                     tagsRequiringAuth:
-                                      description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist
-                                        of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
+                                      description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
                                       type: string
                                   required:
                                   - isPushEnabled
@@ -1862,8 +1893,13 @@ paths:
                                     description: IP restriction rule description.
                                     type: string
                                   ipAddress:
-                                    description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask
-                                      (leading bit match). For CIDR,\nSubnetMask property must not be specified."
+                                    description: 'IP address the security restriction is valid for.
+
+                                      It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                                      CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                                      SubnetMask property must not be specified.'
                                     type: string
                                   name:
                                     description: IP restriction rule name.
@@ -2241,7 +2277,7 @@ paths:
                           readOnly: true
                           type: string
                       type: object
-                    description: "The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}"
+                    description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
                     type: object
                 type: object
               properties:
@@ -2259,8 +2295,7 @@ paths:
                       modelAsString: false
                       name: SiteAvailabilityState
                   clientAffinityEnabled:
-                    description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same 
-                      instance. Default is <code>true</code>.
+                    description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same instance. Default is <code>true</code>.
                     type: boolean
                   clientCertEnabled:
                     description: <code>true</code> to enable client certificate authentication (TLS mutual authentication); otherwise, <code>false</code>. Default is <code>false</code>.
@@ -2274,8 +2309,7 @@ paths:
                       appSettingsOverrides:
                         additionalProperties:
                           type: string
-                        description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from source
-                          app are retained."
+                        description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from source app are retained."
                         type: object
                       cloneCustomHostNames:
                         description: <code>true</code> to clone custom hostnames from source app; otherwise, <code>false</code>.
@@ -2287,7 +2321,9 @@ paths:
                         description: <code>true</code> to configure load balancing for source and destination app.
                         type: boolean
                       correlationId:
-                        description: "Correlation ID of cloning operation. This ID ties multiple cloning operations\ntogether to use the same snapshot."
+                        description: 'Correlation ID of cloning operation. This ID ties multiple cloning operations
+
+                          together to use the same snapshot.'
                         example: 00000000-0000-0000-0000-000000000000
                         format: uuid
                         type: string
@@ -2298,8 +2334,7 @@ paths:
                         description: <code>true</code> to overwrite destination app; otherwise, <code>false</code>.
                         type: boolean
                       sourceWebAppId:
-                        description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}
-                          for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
+                        description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName} for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
                         type: string
                       sourceWebAppLocation:
                         description: 'Location of source app ex: West US or North Europe'
@@ -2329,7 +2364,9 @@ paths:
                     description: <code>true</code> if the app is enabled; otherwise, <code>false</code>. Setting this value to false disables the app (takes the app offline).
                     type: boolean
                   enabledHostNames:
-                    description: "Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,\nthe app is not served on those hostnames."
+                    description: 'Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
+
+                      the app is not served on those hostnames.'
                     items:
                       type: string
                     readOnly: true
@@ -2397,7 +2434,9 @@ paths:
                         type: string
                     type: object
                   httpsOnly:
-                    description: "HttpsOnly: configures a web site to accept only https requests. Issues redirect for\nhttp requests"
+                    description: 'HttpsOnly: configures a web site to accept only https requests. Issues redirect for
+
+                      http requests'
                     type: boolean
                   hyperV:
                     default: false
@@ -2429,13 +2468,14 @@ paths:
                     readOnly: true
                     type: string
                   maxNumberOfWorkers:
-                    description: "Maximum number of workers.\nThis only applies to Functions container."
+                    description: 'Maximum number of workers.
+
+                      This only applies to Functions container.'
                     format: int32
                     readOnly: true
                     type: integer
                   outboundIpAddresses:
-                    description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. 
-                      Read-only.
+                    description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.
                     readOnly: true
                     type: string
                   possibleOutboundIpAddresses:
@@ -2532,7 +2572,9 @@ paths:
                                   modelAsString: false
                                   name: AutoHealActionType
                               customAction:
-                                description: "Custom action to be executed\nwhen an auto heal rule is triggered."
+                                description: 'Custom action to be executed
+
+                                  when an auto heal rule is triggered.'
                                 properties:
                                   exe:
                                     description: Executable to be run.
@@ -2542,7 +2584,9 @@ paths:
                                     type: string
                                 type: object
                               minProcessExecutionTime:
-                                description: "Minimum time the process must execute\nbefore taking the action"
+                                description: 'Minimum time the process must execute
+
+                                  before taking the action'
                                 type: string
                             type: object
                           triggers:
@@ -2643,13 +2687,14 @@ paths:
                         description: Cross-Origin Resource Sharing (CORS) settings for the app.
                         properties:
                           allowedOrigins:
-                            description: "Gets or sets the list of origins that should be allowed to make cross-origin\ncalls (for example: http://example.com:12345). Use \"*\" to allow all."
+                            description: 'Gets or sets the list of origins that should be allowed to make cross-origin
+
+                              calls (for example: http://example.com:12345). Use "*" to allow all.'
                             items:
                               type: string
                             type: array
                           supportCredentials:
-                            description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\nfor more
-                              details."
+                            description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\nfor more details."
                             type: boolean
                         type: object
                       defaultDocuments:
@@ -2675,17 +2720,16 @@ paths:
                                   description: Hostname of a slot to which the traffic will be redirected if decided to. E.g. myapp-stage.azurewebsites.net.
                                   type: string
                                 changeDecisionCallbackUrl:
-                                  description: "Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold and contracts.\n\
-                                    https://www.siteextensions.net/packages/TiPCallback/"
+                                  description: 'Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold and contracts.
+
+                                    https://www.siteextensions.net/packages/TiPCallback/'
                                   type: string
                                 changeIntervalInMinutes:
                                   description: Specifies interval in minutes to reevaluate ReroutePercentage.
                                   format: int32
                                   type: integer
                                 changeStep:
-                                  description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or \n<code>MaxReroutePercentage</code>.
-                                    Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \ncan be provided in TiPCallback site extension
-                                    which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
+                                  description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or \n<code>MaxReroutePercentage</code>. Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \ncan be provided in TiPCallback site extension which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
                                   format: double
                                   type: number
                                 maxReroutePercentage:
@@ -2719,8 +2763,7 @@ paths:
                       handlerMappings:
                         description: Handler mappings.
                         items:
-                          description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process to
-                            handle all HTTP requests with *.php extension."
+                          description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process to handle all HTTP requests with *.php extension."
                           properties:
                             arguments:
                               description: Command-line arguments to be passed to the script processor.
@@ -2755,8 +2798,13 @@ paths:
                               description: IP restriction rule description.
                               type: string
                             ipAddress:
-                              description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask (leading
-                                bit match). For CIDR,\nSubnetMask property must not be specified."
+                              description: 'IP address the security restriction is valid for.
+
+                                It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                                CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                                SubnetMask property must not be specified.'
                               type: string
                             name:
                               description: IP restriction rule name.
@@ -2892,7 +2940,9 @@ paths:
                         description: Version of PHP.
                         type: string
                       preWarmedInstanceCount:
-                        description: "Number of preWarmed instances.\nThis setting only applies to the Consumption and Elastic Plans"
+                        description: 'Number of preWarmed instances.
+
+                          This setting only applies to the Consumption and Elastic Plans'
                         format: int32
                         maximum: 10
                         minimum: 0
@@ -2935,8 +2985,7 @@ paths:
                                 description: Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
                                 type: string
                               tagsRequiringAuth:
-                                description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric
-                                  characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
+                                description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
                                 type: string
                             required:
                             - isPushEnabled
@@ -2970,8 +3019,13 @@ paths:
                               description: IP restriction rule description.
                               type: string
                             ipAddress:
-                              description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask (leading
-                                bit match). For CIDR,\nSubnetMask property must not be specified."
+                              description: 'IP address the security restriction is valid for.
+
+                                It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                                CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                                SubnetMask property must not be specified.'
                               type: string
                             name:
                               description: IP restriction rule name.
@@ -3270,7 +3324,7 @@ paths:
                           readOnly: true
                           type: string
                       type: object
-                    description: "The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}"
+                    description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
                     type: object
                 type: object
               properties:
@@ -3288,8 +3342,7 @@ paths:
                       modelAsString: false
                       name: SiteAvailabilityState
                   clientAffinityEnabled:
-                    description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same 
-                      instance. Default is <code>true</code>.
+                    description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same instance. Default is <code>true</code>.
                     type: boolean
                   clientCertEnabled:
                     description: <code>true</code> to enable client certificate authentication (TLS mutual authentication); otherwise, <code>false</code>. Default is <code>false</code>.
@@ -3303,8 +3356,7 @@ paths:
                       appSettingsOverrides:
                         additionalProperties:
                           type: string
-                        description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from source
-                          app are retained."
+                        description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from source app are retained."
                         type: object
                       cloneCustomHostNames:
                         description: <code>true</code> to clone custom hostnames from source app; otherwise, <code>false</code>.
@@ -3316,7 +3368,9 @@ paths:
                         description: <code>true</code> to configure load balancing for source and destination app.
                         type: boolean
                       correlationId:
-                        description: "Correlation ID of cloning operation. This ID ties multiple cloning operations\ntogether to use the same snapshot."
+                        description: 'Correlation ID of cloning operation. This ID ties multiple cloning operations
+
+                          together to use the same snapshot.'
                         example: 00000000-0000-0000-0000-000000000000
                         format: uuid
                         type: string
@@ -3327,8 +3381,7 @@ paths:
                         description: <code>true</code> to overwrite destination app; otherwise, <code>false</code>.
                         type: boolean
                       sourceWebAppId:
-                        description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}
-                          for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
+                        description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName} for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
                         type: string
                       sourceWebAppLocation:
                         description: 'Location of source app ex: West US or North Europe'
@@ -3358,7 +3411,9 @@ paths:
                     description: <code>true</code> if the app is enabled; otherwise, <code>false</code>. Setting this value to false disables the app (takes the app offline).
                     type: boolean
                   enabledHostNames:
-                    description: "Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,\nthe app is not served on those hostnames."
+                    description: 'Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
+
+                      the app is not served on those hostnames.'
                     items:
                       type: string
                     readOnly: true
@@ -3426,7 +3481,9 @@ paths:
                         type: string
                     type: object
                   httpsOnly:
-                    description: "HttpsOnly: configures a web site to accept only https requests. Issues redirect for\nhttp requests"
+                    description: 'HttpsOnly: configures a web site to accept only https requests. Issues redirect for
+
+                      http requests'
                     type: boolean
                   hyperV:
                     default: false
@@ -3458,13 +3515,14 @@ paths:
                     readOnly: true
                     type: string
                   maxNumberOfWorkers:
-                    description: "Maximum number of workers.\nThis only applies to Functions container."
+                    description: 'Maximum number of workers.
+
+                      This only applies to Functions container.'
                     format: int32
                     readOnly: true
                     type: integer
                   outboundIpAddresses:
-                    description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. 
-                      Read-only.
+                    description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.
                     readOnly: true
                     type: string
                   possibleOutboundIpAddresses:
@@ -3561,7 +3619,9 @@ paths:
                                   modelAsString: false
                                   name: AutoHealActionType
                               customAction:
-                                description: "Custom action to be executed\nwhen an auto heal rule is triggered."
+                                description: 'Custom action to be executed
+
+                                  when an auto heal rule is triggered.'
                                 properties:
                                   exe:
                                     description: Executable to be run.
@@ -3571,7 +3631,9 @@ paths:
                                     type: string
                                 type: object
                               minProcessExecutionTime:
-                                description: "Minimum time the process must execute\nbefore taking the action"
+                                description: 'Minimum time the process must execute
+
+                                  before taking the action'
                                 type: string
                             type: object
                           triggers:
@@ -3672,13 +3734,14 @@ paths:
                         description: Cross-Origin Resource Sharing (CORS) settings for the app.
                         properties:
                           allowedOrigins:
-                            description: "Gets or sets the list of origins that should be allowed to make cross-origin\ncalls (for example: http://example.com:12345). Use \"*\" to allow all."
+                            description: 'Gets or sets the list of origins that should be allowed to make cross-origin
+
+                              calls (for example: http://example.com:12345). Use "*" to allow all.'
                             items:
                               type: string
                             type: array
                           supportCredentials:
-                            description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\nfor more
-                              details."
+                            description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\nfor more details."
                             type: boolean
                         type: object
                       defaultDocuments:
@@ -3704,17 +3767,16 @@ paths:
                                   description: Hostname of a slot to which the traffic will be redirected if decided to. E.g. myapp-stage.azurewebsites.net.
                                   type: string
                                 changeDecisionCallbackUrl:
-                                  description: "Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold and contracts.\n\
-                                    https://www.siteextensions.net/packages/TiPCallback/"
+                                  description: 'Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold and contracts.
+
+                                    https://www.siteextensions.net/packages/TiPCallback/'
                                   type: string
                                 changeIntervalInMinutes:
                                   description: Specifies interval in minutes to reevaluate ReroutePercentage.
                                   format: int32
                                   type: integer
                                 changeStep:
-                                  description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or \n<code>MaxReroutePercentage</code>.
-                                    Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \ncan be provided in TiPCallback site extension
-                                    which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
+                                  description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or \n<code>MaxReroutePercentage</code>. Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \ncan be provided in TiPCallback site extension which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
                                   format: double
                                   type: number
                                 maxReroutePercentage:
@@ -3748,8 +3810,7 @@ paths:
                       handlerMappings:
                         description: Handler mappings.
                         items:
-                          description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process to
-                            handle all HTTP requests with *.php extension."
+                          description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process to handle all HTTP requests with *.php extension."
                           properties:
                             arguments:
                               description: Command-line arguments to be passed to the script processor.
@@ -3784,8 +3845,13 @@ paths:
                               description: IP restriction rule description.
                               type: string
                             ipAddress:
-                              description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask (leading
-                                bit match). For CIDR,\nSubnetMask property must not be specified."
+                              description: 'IP address the security restriction is valid for.
+
+                                It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                                CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                                SubnetMask property must not be specified.'
                               type: string
                             name:
                               description: IP restriction rule name.
@@ -3921,7 +3987,9 @@ paths:
                         description: Version of PHP.
                         type: string
                       preWarmedInstanceCount:
-                        description: "Number of preWarmed instances.\nThis setting only applies to the Consumption and Elastic Plans"
+                        description: 'Number of preWarmed instances.
+
+                          This setting only applies to the Consumption and Elastic Plans'
                         format: int32
                         maximum: 10
                         minimum: 0
@@ -3964,8 +4032,7 @@ paths:
                                 description: Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
                                 type: string
                               tagsRequiringAuth:
-                                description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric
-                                  characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
+                                description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
                                 type: string
                             required:
                             - isPushEnabled
@@ -3999,8 +4066,13 @@ paths:
                               description: IP restriction rule description.
                               type: string
                             ipAddress:
-                              description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask (leading
-                                bit match). For CIDR,\nSubnetMask property must not be specified."
+                              description: 'IP address the security restriction is valid for.
+
+                                It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                                CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                                SubnetMask property must not be specified.'
                               type: string
                             name:
                               description: IP restriction rule name.
@@ -4225,7 +4297,7 @@ paths:
                           readOnly: true
                           type: string
                       type: object
-                    description: "The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}"
+                    description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
                     type: object
                 type: object
               properties:
@@ -4243,8 +4315,7 @@ paths:
                       modelAsString: false
                       name: SiteAvailabilityState
                   clientAffinityEnabled:
-                    description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same 
-                      instance. Default is <code>true</code>.
+                    description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same instance. Default is <code>true</code>.
                     type: boolean
                   clientCertEnabled:
                     description: <code>true</code> to enable client certificate authentication (TLS mutual authentication); otherwise, <code>false</code>. Default is <code>false</code>.
@@ -4258,8 +4329,7 @@ paths:
                       appSettingsOverrides:
                         additionalProperties:
                           type: string
-                        description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from source
-                          app are retained."
+                        description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from source app are retained."
                         type: object
                       cloneCustomHostNames:
                         description: <code>true</code> to clone custom hostnames from source app; otherwise, <code>false</code>.
@@ -4271,7 +4341,9 @@ paths:
                         description: <code>true</code> to configure load balancing for source and destination app.
                         type: boolean
                       correlationId:
-                        description: "Correlation ID of cloning operation. This ID ties multiple cloning operations\ntogether to use the same snapshot."
+                        description: 'Correlation ID of cloning operation. This ID ties multiple cloning operations
+
+                          together to use the same snapshot.'
                         example: 00000000-0000-0000-0000-000000000000
                         format: uuid
                         type: string
@@ -4282,8 +4354,7 @@ paths:
                         description: <code>true</code> to overwrite destination app; otherwise, <code>false</code>.
                         type: boolean
                       sourceWebAppId:
-                        description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}
-                          for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
+                        description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName} for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
                         type: string
                       sourceWebAppLocation:
                         description: 'Location of source app ex: West US or North Europe'
@@ -4313,7 +4384,9 @@ paths:
                     description: <code>true</code> if the app is enabled; otherwise, <code>false</code>. Setting this value to false disables the app (takes the app offline).
                     type: boolean
                   enabledHostNames:
-                    description: "Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,\nthe app is not served on those hostnames."
+                    description: 'Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
+
+                      the app is not served on those hostnames.'
                     items:
                       type: string
                     readOnly: true
@@ -4381,7 +4454,9 @@ paths:
                         type: string
                     type: object
                   httpsOnly:
-                    description: "HttpsOnly: configures a web site to accept only https requests. Issues redirect for\nhttp requests"
+                    description: 'HttpsOnly: configures a web site to accept only https requests. Issues redirect for
+
+                      http requests'
                     type: boolean
                   hyperV:
                     default: false
@@ -4413,13 +4488,14 @@ paths:
                     readOnly: true
                     type: string
                   maxNumberOfWorkers:
-                    description: "Maximum number of workers.\nThis only applies to Functions container."
+                    description: 'Maximum number of workers.
+
+                      This only applies to Functions container.'
                     format: int32
                     readOnly: true
                     type: integer
                   outboundIpAddresses:
-                    description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. 
-                      Read-only.
+                    description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.
                     readOnly: true
                     type: string
                   possibleOutboundIpAddresses:
@@ -4516,7 +4592,9 @@ paths:
                                   modelAsString: false
                                   name: AutoHealActionType
                               customAction:
-                                description: "Custom action to be executed\nwhen an auto heal rule is triggered."
+                                description: 'Custom action to be executed
+
+                                  when an auto heal rule is triggered.'
                                 properties:
                                   exe:
                                     description: Executable to be run.
@@ -4526,7 +4604,9 @@ paths:
                                     type: string
                                 type: object
                               minProcessExecutionTime:
-                                description: "Minimum time the process must execute\nbefore taking the action"
+                                description: 'Minimum time the process must execute
+
+                                  before taking the action'
                                 type: string
                             type: object
                           triggers:
@@ -4627,13 +4707,14 @@ paths:
                         description: Cross-Origin Resource Sharing (CORS) settings for the app.
                         properties:
                           allowedOrigins:
-                            description: "Gets or sets the list of origins that should be allowed to make cross-origin\ncalls (for example: http://example.com:12345). Use \"*\" to allow all."
+                            description: 'Gets or sets the list of origins that should be allowed to make cross-origin
+
+                              calls (for example: http://example.com:12345). Use "*" to allow all.'
                             items:
                               type: string
                             type: array
                           supportCredentials:
-                            description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\nfor more
-                              details."
+                            description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\nfor more details."
                             type: boolean
                         type: object
                       defaultDocuments:
@@ -4659,17 +4740,16 @@ paths:
                                   description: Hostname of a slot to which the traffic will be redirected if decided to. E.g. myapp-stage.azurewebsites.net.
                                   type: string
                                 changeDecisionCallbackUrl:
-                                  description: "Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold and contracts.\n\
-                                    https://www.siteextensions.net/packages/TiPCallback/"
+                                  description: 'Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold and contracts.
+
+                                    https://www.siteextensions.net/packages/TiPCallback/'
                                   type: string
                                 changeIntervalInMinutes:
                                   description: Specifies interval in minutes to reevaluate ReroutePercentage.
                                   format: int32
                                   type: integer
                                 changeStep:
-                                  description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or \n<code>MaxReroutePercentage</code>.
-                                    Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \ncan be provided in TiPCallback site extension
-                                    which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
+                                  description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or \n<code>MaxReroutePercentage</code>. Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \ncan be provided in TiPCallback site extension which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
                                   format: double
                                   type: number
                                 maxReroutePercentage:
@@ -4703,8 +4783,7 @@ paths:
                       handlerMappings:
                         description: Handler mappings.
                         items:
-                          description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process to
-                            handle all HTTP requests with *.php extension."
+                          description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process to handle all HTTP requests with *.php extension."
                           properties:
                             arguments:
                               description: Command-line arguments to be passed to the script processor.
@@ -4739,8 +4818,13 @@ paths:
                               description: IP restriction rule description.
                               type: string
                             ipAddress:
-                              description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask (leading
-                                bit match). For CIDR,\nSubnetMask property must not be specified."
+                              description: 'IP address the security restriction is valid for.
+
+                                It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                                CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                                SubnetMask property must not be specified.'
                               type: string
                             name:
                               description: IP restriction rule name.
@@ -4876,7 +4960,9 @@ paths:
                         description: Version of PHP.
                         type: string
                       preWarmedInstanceCount:
-                        description: "Number of preWarmed instances.\nThis setting only applies to the Consumption and Elastic Plans"
+                        description: 'Number of preWarmed instances.
+
+                          This setting only applies to the Consumption and Elastic Plans'
                         format: int32
                         maximum: 10
                         minimum: 0
@@ -4919,8 +5005,7 @@ paths:
                                 description: Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
                                 type: string
                               tagsRequiringAuth:
-                                description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric
-                                  characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
+                                description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
                                 type: string
                             required:
                             - isPushEnabled
@@ -4954,8 +5039,13 @@ paths:
                               description: IP restriction rule description.
                               type: string
                             ipAddress:
-                              description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask (leading
-                                bit match). For CIDR,\nSubnetMask property must not be specified."
+                              description: 'IP address the security restriction is valid for.
+
+                                It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                                CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                                SubnetMask property must not be specified.'
                               type: string
                             name:
                               description: IP restriction rule name.
@@ -5244,7 +5334,7 @@ paths:
                         readOnly: true
                         type: string
                     type: object
-                  description: "The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}"
+                  description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
                   type: object
               type: object
             properties:
@@ -5262,8 +5352,7 @@ paths:
                     modelAsString: false
                     name: SiteAvailabilityState
                 clientAffinityEnabled:
-                  description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same 
-                    instance. Default is <code>true</code>.
+                  description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same instance. Default is <code>true</code>.
                   type: boolean
                 clientCertEnabled:
                   description: <code>true</code> to enable client certificate authentication (TLS mutual authentication); otherwise, <code>false</code>. Default is <code>false</code>.
@@ -5277,8 +5366,7 @@ paths:
                     appSettingsOverrides:
                       additionalProperties:
                         type: string
-                      description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from source
-                        app are retained."
+                      description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from source app are retained."
                       type: object
                     cloneCustomHostNames:
                       description: <code>true</code> to clone custom hostnames from source app; otherwise, <code>false</code>.
@@ -5290,7 +5378,9 @@ paths:
                       description: <code>true</code> to configure load balancing for source and destination app.
                       type: boolean
                     correlationId:
-                      description: "Correlation ID of cloning operation. This ID ties multiple cloning operations\ntogether to use the same snapshot."
+                      description: 'Correlation ID of cloning operation. This ID ties multiple cloning operations
+
+                        together to use the same snapshot.'
                       example: 00000000-0000-0000-0000-000000000000
                       format: uuid
                       type: string
@@ -5301,8 +5391,7 @@ paths:
                       description: <code>true</code> to overwrite destination app; otherwise, <code>false</code>.
                       type: boolean
                     sourceWebAppId:
-                      description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}
-                        for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
+                      description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName} for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
                       type: string
                     sourceWebAppLocation:
                       description: 'Location of source app ex: West US or North Europe'
@@ -5332,7 +5421,9 @@ paths:
                   description: <code>true</code> if the app is enabled; otherwise, <code>false</code>. Setting this value to false disables the app (takes the app offline).
                   type: boolean
                 enabledHostNames:
-                  description: "Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,\nthe app is not served on those hostnames."
+                  description: 'Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
+
+                    the app is not served on those hostnames.'
                   items:
                     type: string
                   readOnly: true
@@ -5400,7 +5491,9 @@ paths:
                       type: string
                   type: object
                 httpsOnly:
-                  description: "HttpsOnly: configures a web site to accept only https requests. Issues redirect for\nhttp requests"
+                  description: 'HttpsOnly: configures a web site to accept only https requests. Issues redirect for
+
+                    http requests'
                   type: boolean
                 hyperV:
                   default: false
@@ -5432,13 +5525,14 @@ paths:
                   readOnly: true
                   type: string
                 maxNumberOfWorkers:
-                  description: "Maximum number of workers.\nThis only applies to Functions container."
+                  description: 'Maximum number of workers.
+
+                    This only applies to Functions container.'
                   format: int32
                   readOnly: true
                   type: integer
                 outboundIpAddresses:
-                  description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. 
-                    Read-only.
+                  description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.
                   readOnly: true
                   type: string
                 possibleOutboundIpAddresses:
@@ -5535,7 +5629,9 @@ paths:
                                 modelAsString: false
                                 name: AutoHealActionType
                             customAction:
-                              description: "Custom action to be executed\nwhen an auto heal rule is triggered."
+                              description: 'Custom action to be executed
+
+                                when an auto heal rule is triggered.'
                               properties:
                                 exe:
                                   description: Executable to be run.
@@ -5545,7 +5641,9 @@ paths:
                                   type: string
                               type: object
                             minProcessExecutionTime:
-                              description: "Minimum time the process must execute\nbefore taking the action"
+                              description: 'Minimum time the process must execute
+
+                                before taking the action'
                               type: string
                           type: object
                         triggers:
@@ -5646,13 +5744,14 @@ paths:
                       description: Cross-Origin Resource Sharing (CORS) settings for the app.
                       properties:
                         allowedOrigins:
-                          description: "Gets or sets the list of origins that should be allowed to make cross-origin\ncalls (for example: http://example.com:12345). Use \"*\" to allow all."
+                          description: 'Gets or sets the list of origins that should be allowed to make cross-origin
+
+                            calls (for example: http://example.com:12345). Use "*" to allow all.'
                           items:
                             type: string
                           type: array
                         supportCredentials:
-                          description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\nfor more
-                            details."
+                          description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\nfor more details."
                           type: boolean
                       type: object
                     defaultDocuments:
@@ -5678,17 +5777,16 @@ paths:
                                 description: Hostname of a slot to which the traffic will be redirected if decided to. E.g. myapp-stage.azurewebsites.net.
                                 type: string
                               changeDecisionCallbackUrl:
-                                description: "Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold and contracts.\n\
-                                  https://www.siteextensions.net/packages/TiPCallback/"
+                                description: 'Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold and contracts.
+
+                                  https://www.siteextensions.net/packages/TiPCallback/'
                                 type: string
                               changeIntervalInMinutes:
                                 description: Specifies interval in minutes to reevaluate ReroutePercentage.
                                 format: int32
                                 type: integer
                               changeStep:
-                                description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or \n<code>MaxReroutePercentage</code>.
-                                  Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \ncan be provided in TiPCallback site extension
-                                  which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
+                                description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or \n<code>MaxReroutePercentage</code>. Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \ncan be provided in TiPCallback site extension which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
                                 format: double
                                 type: number
                               maxReroutePercentage:
@@ -5722,8 +5820,7 @@ paths:
                     handlerMappings:
                       description: Handler mappings.
                       items:
-                        description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process to
-                          handle all HTTP requests with *.php extension."
+                        description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process to handle all HTTP requests with *.php extension."
                         properties:
                           arguments:
                             description: Command-line arguments to be passed to the script processor.
@@ -5758,8 +5855,13 @@ paths:
                             description: IP restriction rule description.
                             type: string
                           ipAddress:
-                            description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask (leading
-                              bit match). For CIDR,\nSubnetMask property must not be specified."
+                            description: 'IP address the security restriction is valid for.
+
+                              It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                              CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                              SubnetMask property must not be specified.'
                             type: string
                           name:
                             description: IP restriction rule name.
@@ -5895,7 +5997,9 @@ paths:
                       description: Version of PHP.
                       type: string
                     preWarmedInstanceCount:
-                      description: "Number of preWarmed instances.\nThis setting only applies to the Consumption and Elastic Plans"
+                      description: 'Number of preWarmed instances.
+
+                        This setting only applies to the Consumption and Elastic Plans'
                       format: int32
                       maximum: 10
                       minimum: 0
@@ -5938,8 +6042,7 @@ paths:
                               description: Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
                               type: string
                             tagsRequiringAuth:
-                              description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric
-                                characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
+                              description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
                               type: string
                           required:
                           - isPushEnabled
@@ -5973,8 +6076,13 @@ paths:
                             description: IP restriction rule description.
                             type: string
                           ipAddress:
-                            description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask (leading
-                              bit match). For CIDR,\nSubnetMask property must not be specified."
+                            description: 'IP address the security restriction is valid for.
+
+                              It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                              CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                              SubnetMask property must not be specified.'
                             type: string
                           name:
                             description: IP restriction rule name.
@@ -6203,7 +6311,7 @@ paths:
                           readOnly: true
                           type: string
                       type: object
-                    description: "The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}"
+                    description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
                     type: object
                 type: object
               properties:
@@ -6221,8 +6329,7 @@ paths:
                       modelAsString: false
                       name: SiteAvailabilityState
                   clientAffinityEnabled:
-                    description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same 
-                      instance. Default is <code>true</code>.
+                    description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same instance. Default is <code>true</code>.
                     type: boolean
                   clientCertEnabled:
                     description: <code>true</code> to enable client certificate authentication (TLS mutual authentication); otherwise, <code>false</code>. Default is <code>false</code>.
@@ -6236,8 +6343,7 @@ paths:
                       appSettingsOverrides:
                         additionalProperties:
                           type: string
-                        description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from source
-                          app are retained."
+                        description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from source app are retained."
                         type: object
                       cloneCustomHostNames:
                         description: <code>true</code> to clone custom hostnames from source app; otherwise, <code>false</code>.
@@ -6249,7 +6355,9 @@ paths:
                         description: <code>true</code> to configure load balancing for source and destination app.
                         type: boolean
                       correlationId:
-                        description: "Correlation ID of cloning operation. This ID ties multiple cloning operations\ntogether to use the same snapshot."
+                        description: 'Correlation ID of cloning operation. This ID ties multiple cloning operations
+
+                          together to use the same snapshot.'
                         example: 00000000-0000-0000-0000-000000000000
                         format: uuid
                         type: string
@@ -6260,8 +6368,7 @@ paths:
                         description: <code>true</code> to overwrite destination app; otherwise, <code>false</code>.
                         type: boolean
                       sourceWebAppId:
-                        description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}
-                          for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
+                        description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName} for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
                         type: string
                       sourceWebAppLocation:
                         description: 'Location of source app ex: West US or North Europe'
@@ -6291,7 +6398,9 @@ paths:
                     description: <code>true</code> if the app is enabled; otherwise, <code>false</code>. Setting this value to false disables the app (takes the app offline).
                     type: boolean
                   enabledHostNames:
-                    description: "Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,\nthe app is not served on those hostnames."
+                    description: 'Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
+
+                      the app is not served on those hostnames.'
                     items:
                       type: string
                     readOnly: true
@@ -6359,7 +6468,9 @@ paths:
                         type: string
                     type: object
                   httpsOnly:
-                    description: "HttpsOnly: configures a web site to accept only https requests. Issues redirect for\nhttp requests"
+                    description: 'HttpsOnly: configures a web site to accept only https requests. Issues redirect for
+
+                      http requests'
                     type: boolean
                   hyperV:
                     default: false
@@ -6391,13 +6502,14 @@ paths:
                     readOnly: true
                     type: string
                   maxNumberOfWorkers:
-                    description: "Maximum number of workers.\nThis only applies to Functions container."
+                    description: 'Maximum number of workers.
+
+                      This only applies to Functions container.'
                     format: int32
                     readOnly: true
                     type: integer
                   outboundIpAddresses:
-                    description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. 
-                      Read-only.
+                    description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.
                     readOnly: true
                     type: string
                   possibleOutboundIpAddresses:
@@ -6494,7 +6606,9 @@ paths:
                                   modelAsString: false
                                   name: AutoHealActionType
                               customAction:
-                                description: "Custom action to be executed\nwhen an auto heal rule is triggered."
+                                description: 'Custom action to be executed
+
+                                  when an auto heal rule is triggered.'
                                 properties:
                                   exe:
                                     description: Executable to be run.
@@ -6504,7 +6618,9 @@ paths:
                                     type: string
                                 type: object
                               minProcessExecutionTime:
-                                description: "Minimum time the process must execute\nbefore taking the action"
+                                description: 'Minimum time the process must execute
+
+                                  before taking the action'
                                 type: string
                             type: object
                           triggers:
@@ -6605,13 +6721,14 @@ paths:
                         description: Cross-Origin Resource Sharing (CORS) settings for the app.
                         properties:
                           allowedOrigins:
-                            description: "Gets or sets the list of origins that should be allowed to make cross-origin\ncalls (for example: http://example.com:12345). Use \"*\" to allow all."
+                            description: 'Gets or sets the list of origins that should be allowed to make cross-origin
+
+                              calls (for example: http://example.com:12345). Use "*" to allow all.'
                             items:
                               type: string
                             type: array
                           supportCredentials:
-                            description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\nfor more
-                              details."
+                            description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\nfor more details."
                             type: boolean
                         type: object
                       defaultDocuments:
@@ -6637,17 +6754,16 @@ paths:
                                   description: Hostname of a slot to which the traffic will be redirected if decided to. E.g. myapp-stage.azurewebsites.net.
                                   type: string
                                 changeDecisionCallbackUrl:
-                                  description: "Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold and contracts.\n\
-                                    https://www.siteextensions.net/packages/TiPCallback/"
+                                  description: 'Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold and contracts.
+
+                                    https://www.siteextensions.net/packages/TiPCallback/'
                                   type: string
                                 changeIntervalInMinutes:
                                   description: Specifies interval in minutes to reevaluate ReroutePercentage.
                                   format: int32
                                   type: integer
                                 changeStep:
-                                  description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or \n<code>MaxReroutePercentage</code>.
-                                    Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \ncan be provided in TiPCallback site extension
-                                    which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
+                                  description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or \n<code>MaxReroutePercentage</code>. Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \ncan be provided in TiPCallback site extension which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
                                   format: double
                                   type: number
                                 maxReroutePercentage:
@@ -6681,8 +6797,7 @@ paths:
                       handlerMappings:
                         description: Handler mappings.
                         items:
-                          description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process to
-                            handle all HTTP requests with *.php extension."
+                          description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process to handle all HTTP requests with *.php extension."
                           properties:
                             arguments:
                               description: Command-line arguments to be passed to the script processor.
@@ -6717,8 +6832,13 @@ paths:
                               description: IP restriction rule description.
                               type: string
                             ipAddress:
-                              description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask (leading
-                                bit match). For CIDR,\nSubnetMask property must not be specified."
+                              description: 'IP address the security restriction is valid for.
+
+                                It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                                CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                                SubnetMask property must not be specified.'
                               type: string
                             name:
                               description: IP restriction rule name.
@@ -6854,7 +6974,9 @@ paths:
                         description: Version of PHP.
                         type: string
                       preWarmedInstanceCount:
-                        description: "Number of preWarmed instances.\nThis setting only applies to the Consumption and Elastic Plans"
+                        description: 'Number of preWarmed instances.
+
+                          This setting only applies to the Consumption and Elastic Plans'
                         format: int32
                         maximum: 10
                         minimum: 0
@@ -6897,8 +7019,7 @@ paths:
                                 description: Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
                                 type: string
                               tagsRequiringAuth:
-                                description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric
-                                  characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
+                                description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
                                 type: string
                             required:
                             - isPushEnabled
@@ -6932,8 +7053,13 @@ paths:
                               description: IP restriction rule description.
                               type: string
                             ipAddress:
-                              description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask (leading
-                                bit match). For CIDR,\nSubnetMask property must not be specified."
+                              description: 'IP address the security restriction is valid for.
+
+                                It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                                CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                                SubnetMask property must not be specified.'
                               type: string
                             name:
                               description: IP restriction rule name.
@@ -7158,7 +7284,7 @@ paths:
                           readOnly: true
                           type: string
                       type: object
-                    description: "The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}"
+                    description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
                     type: object
                 type: object
               properties:
@@ -7176,8 +7302,7 @@ paths:
                       modelAsString: false
                       name: SiteAvailabilityState
                   clientAffinityEnabled:
-                    description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same 
-                      instance. Default is <code>true</code>.
+                    description: <code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same instance. Default is <code>true</code>.
                     type: boolean
                   clientCertEnabled:
                     description: <code>true</code> to enable client certificate authentication (TLS mutual authentication); otherwise, <code>false</code>. Default is <code>false</code>.
@@ -7191,8 +7316,7 @@ paths:
                       appSettingsOverrides:
                         additionalProperties:
                           type: string
-                        description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from source
-                          app are retained."
+                        description: "Application setting overrides for cloned app. If specified, these settings override the settings cloned \nfrom source app. Otherwise, application settings from source app are retained."
                         type: object
                       cloneCustomHostNames:
                         description: <code>true</code> to clone custom hostnames from source app; otherwise, <code>false</code>.
@@ -7204,7 +7328,9 @@ paths:
                         description: <code>true</code> to configure load balancing for source and destination app.
                         type: boolean
                       correlationId:
-                        description: "Correlation ID of cloning operation. This ID ties multiple cloning operations\ntogether to use the same snapshot."
+                        description: 'Correlation ID of cloning operation. This ID ties multiple cloning operations
+
+                          together to use the same snapshot.'
                         example: 00000000-0000-0000-0000-000000000000
                         format: uuid
                         type: string
@@ -7215,8 +7341,7 @@ paths:
                         description: <code>true</code> to overwrite destination app; otherwise, <code>false</code>.
                         type: boolean
                       sourceWebAppId:
-                        description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}
-                          for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
+                        description: "ARM resource ID of the source app. App resource ID is of the form \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName} for production slots and \n/subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots."
                         type: string
                       sourceWebAppLocation:
                         description: 'Location of source app ex: West US or North Europe'
@@ -7246,7 +7371,9 @@ paths:
                     description: <code>true</code> if the app is enabled; otherwise, <code>false</code>. Setting this value to false disables the app (takes the app offline).
                     type: boolean
                   enabledHostNames:
-                    description: "Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,\nthe app is not served on those hostnames."
+                    description: 'Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
+
+                      the app is not served on those hostnames.'
                     items:
                       type: string
                     readOnly: true
@@ -7314,7 +7441,9 @@ paths:
                         type: string
                     type: object
                   httpsOnly:
-                    description: "HttpsOnly: configures a web site to accept only https requests. Issues redirect for\nhttp requests"
+                    description: 'HttpsOnly: configures a web site to accept only https requests. Issues redirect for
+
+                      http requests'
                     type: boolean
                   hyperV:
                     default: false
@@ -7346,13 +7475,14 @@ paths:
                     readOnly: true
                     type: string
                   maxNumberOfWorkers:
-                    description: "Maximum number of workers.\nThis only applies to Functions container."
+                    description: 'Maximum number of workers.
+
+                      This only applies to Functions container.'
                     format: int32
                     readOnly: true
                     type: integer
                   outboundIpAddresses:
-                    description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. 
-                      Read-only.
+                    description: List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.
                     readOnly: true
                     type: string
                   possibleOutboundIpAddresses:
@@ -7449,7 +7579,9 @@ paths:
                                   modelAsString: false
                                   name: AutoHealActionType
                               customAction:
-                                description: "Custom action to be executed\nwhen an auto heal rule is triggered."
+                                description: 'Custom action to be executed
+
+                                  when an auto heal rule is triggered.'
                                 properties:
                                   exe:
                                     description: Executable to be run.
@@ -7459,7 +7591,9 @@ paths:
                                     type: string
                                 type: object
                               minProcessExecutionTime:
-                                description: "Minimum time the process must execute\nbefore taking the action"
+                                description: 'Minimum time the process must execute
+
+                                  before taking the action'
                                 type: string
                             type: object
                           triggers:
@@ -7560,13 +7694,14 @@ paths:
                         description: Cross-Origin Resource Sharing (CORS) settings for the app.
                         properties:
                           allowedOrigins:
-                            description: "Gets or sets the list of origins that should be allowed to make cross-origin\ncalls (for example: http://example.com:12345). Use \"*\" to allow all."
+                            description: 'Gets or sets the list of origins that should be allowed to make cross-origin
+
+                              calls (for example: http://example.com:12345). Use "*" to allow all.'
                             items:
                               type: string
                             type: array
                           supportCredentials:
-                            description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\nfor more
-                              details."
+                            description: "Gets or sets whether CORS requests with credentials are allowed. See \nhttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials\nfor more details."
                             type: boolean
                         type: object
                       defaultDocuments:
@@ -7592,17 +7727,16 @@ paths:
                                   description: Hostname of a slot to which the traffic will be redirected if decided to. E.g. myapp-stage.azurewebsites.net.
                                   type: string
                                 changeDecisionCallbackUrl:
-                                  description: "Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold and contracts.\n\
-                                    https://www.siteextensions.net/packages/TiPCallback/"
+                                  description: 'Custom decision algorithm can be provided in TiPCallback site extension which URL can be specified. See TiPCallback site extension for the scaffold and contracts.
+
+                                    https://www.siteextensions.net/packages/TiPCallback/'
                                   type: string
                                 changeIntervalInMinutes:
                                   description: Specifies interval in minutes to reevaluate ReroutePercentage.
                                   format: int32
                                   type: integer
                                 changeStep:
-                                  description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or \n<code>MaxReroutePercentage</code>.
-                                    Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \ncan be provided in TiPCallback site extension
-                                    which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
+                                  description: "In auto ramp up scenario this is the step to add/remove from <code>ReroutePercentage</code> until it reaches \\n<code>MinReroutePercentage</code> or \n<code>MaxReroutePercentage</code>. Site metrics are checked every N minutes specified in <code>ChangeIntervalInMinutes</code>.\\nCustom decision algorithm \ncan be provided in TiPCallback site extension which URL can be specified in <code>ChangeDecisionCallbackUrl</code>."
                                   format: double
                                   type: number
                                 maxReroutePercentage:
@@ -7636,8 +7770,7 @@ paths:
                       handlerMappings:
                         description: Handler mappings.
                         items:
-                          description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process to
-                            handle all HTTP requests with *.php extension."
+                          description: "The IIS handler mappings used to define which handler processes HTTP requests with certain extension. \nFor example, it is used to configure php-cgi.exe process to handle all HTTP requests with *.php extension."
                           properties:
                             arguments:
                               description: Command-line arguments to be passed to the script processor.
@@ -7672,8 +7805,13 @@ paths:
                               description: IP restriction rule description.
                               type: string
                             ipAddress:
-                              description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask (leading
-                                bit match). For CIDR,\nSubnetMask property must not be specified."
+                              description: 'IP address the security restriction is valid for.
+
+                                It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                                CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                                SubnetMask property must not be specified.'
                               type: string
                             name:
                               description: IP restriction rule name.
@@ -7809,7 +7947,9 @@ paths:
                         description: Version of PHP.
                         type: string
                       preWarmedInstanceCount:
-                        description: "Number of preWarmed instances.\nThis setting only applies to the Consumption and Elastic Plans"
+                        description: 'Number of preWarmed instances.
+
+                          This setting only applies to the Consumption and Elastic Plans'
                         format: int32
                         maximum: 10
                         minimum: 0
@@ -7852,8 +7992,7 @@ paths:
                                 description: Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
                                 type: string
                               tagsRequiringAuth:
-                                description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric
-                                  characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
+                                description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
                                 type: string
                             required:
                             - isPushEnabled
@@ -7887,8 +8026,13 @@ paths:
                               description: IP restriction rule description.
                               type: string
                             ipAddress:
-                              description: "IP address the security restriction is valid for.\nIt can be in form of pure ipv4 address (required SubnetMask property) or\nCIDR notation such as ipv4/mask (leading
-                                bit match). For CIDR,\nSubnetMask property must not be specified."
+                              description: 'IP address the security restriction is valid for.
+
+                                It can be in form of pure ipv4 address (required SubnetMask property) or
+
+                                CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+                                SubnetMask property must not be specified.'
                               type: string
                             name:
                               description: IP restriction rule name.
@@ -8550,8 +8694,7 @@ paths:
         dispatcher: FALLBACK
   ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backups/{backupId}/list
   : post:
-      description: Description for Gets status of a web app backup that may be in progress, including secrets associated with the backup, such as the Azure Storage SAS URL. Also can be used to update 
-        the SAS URL for the backup if a new URL is passed in the request body.
+      description: Description for Gets status of a web app backup that may be in progress, including secrets associated with the backup, such as the Azure Storage SAS URL. Also can be used to update the SAS URL for the backup if a new URL is passed in the request body.
       operationId: WebApps_ListBackupStatusSecrets
       parameters:
       - $ref: '#/parameters/resourceGroupNameParameter'
@@ -8626,8 +8769,7 @@ paths:
                 readOnly: true
                 type: object
             type: object
-      summary: Azure Functions Gets Status of a Web App Backup That May Be in Progress, Including Secrets Associated with the Backup, Such as the Azure Storage SAS URL. Also Can Be Used to Update the 
-        SAS URL for the Backup if a New URL is Passed in the Request Body.
+      summary: Azure Functions Gets Status of a Web App Backup That May Be in Progress, Including Secrets Associated with the Backup, Such as the Azure Storage SAS URL. Also Can Be Used to Update the SAS URL for the Backup if a New URL is Passed in the Request Body.
       tags:
       - WebApps
       x-microcks-operation:
@@ -10248,8 +10390,7 @@ paths:
                   description: Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
                   type: string
                 tagsRequiringAuth:
-                  description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters
-                    and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
+                  description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
                   type: string
               required:
               - isPushEnabled
@@ -10296,8 +10437,7 @@ paths:
                     description: Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
                     type: string
                   tagsRequiringAuth:
-                    description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters
-                      and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
+                    description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
                     type: string
                 required:
                 - isPushEnabled
@@ -10406,8 +10546,7 @@ paths:
                     description: Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
                     type: string
                   tagsRequiringAuth:
-                    description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters
-                      and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
+                    description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
                     type: string
                 required:
                 - isPushEnabled
@@ -10611,145 +10750,50 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 definitions:
-  ApiKVReference:
-    description: Description of site key vault references.
+  ConnStringValueTypePair:
+    description: Database connection string value to type pair.
     properties:
-      details:
-        type: string
-      identityType:
+      type:
+        description: Type of database.
         enum:
-        - None
-        - SystemAssigned
-        - UserAssigned
+        - MySql
+        - SQLServer
+        - SQLAzure
+        - Custom
+        - NotificationHub
+        - ServiceBus
+        - EventHub
+        - ApiHub
+        - DocDb
+        - RedisCache
+        - PostgreSQL
         type: string
         x-ms-enum:
           modelAsString: false
-          name: ManagedServiceIdentityType
-      location:
-        enum:
-        - ApplicationSetting
+          name: ConnectionStringType
+      value:
+        description: Value of pair.
         type: string
-        x-ms-enum:
-          modelAsString: false
-          name: ConfigReferenceLocation
-      reference:
-        type: string
-      secretName:
-        type: string
-      secretVersion:
-        type: string
-      source:
-        enum:
-        - KeyVault
-        type: string
-        x-ms-enum:
-          modelAsString: false
-          name: ConfigReferenceSource
-      status:
-        enum:
-        - Initialized
-        - Resolved
-        - InvalidSyntax
-        - MSINotEnabled
-        - VaultNotFound
-        - SecretNotFound
-        - SecretVersionNotFound
-        - AccessToKeyVaultDenied
-        - OtherReasons
-        type: string
-        x-ms-enum:
-          modelAsString: false
-          name: ResolveStatus
-      vaultName:
-        type: string
+    required:
+    - value
+    - type
     type: object
-  ApplicationLogsConfig:
-    description: Application logs configuration.
+  BackupItemCollection:
+    description: Collection of backup items.
     properties:
-      azureBlobStorage:
-        $ref: '#/definitions/AzureBlobStorageApplicationLogsConfig'
-        description: Application logs to blob storage configuration.
-      azureTableStorage:
-        $ref: '#/definitions/AzureTableStorageApplicationLogsConfig'
-        description: Application logs to azure table storage configuration.
-      fileSystem:
-        $ref: '#/definitions/FileSystemApplicationLogsConfig'
-        description: Application logs to file system configuration.
-    type: object
-  AzureBlobStorageApplicationLogsConfig:
-    description: Application logs azure blob storage configuration.
-    properties:
-      level:
-        description: Log level.
-        enum:
-        - Off
-        - Verbose
-        - Information
-        - Warning
-        - Error
-        type: string
-        x-ms-enum:
-          modelAsString: false
-          name: LogLevel
-      retentionInDays:
-        description: "Retention in days.\nRemove blobs older than X days.\n0 or lower means no retention."
-        format: int32
-        type: integer
-      sasUrl:
-        description: SAS url to a azure blob container with read/write/list/delete permissions.
-        type: string
-    type: object
-  AzureBlobStorageHttpLogsConfig:
-    description: Http logs to azure blob storage configuration.
-    properties:
-      enabled:
-        description: True if configuration is enabled, false if it is disabled and null if configuration is not set.
-        type: boolean
-      retentionInDays:
-        description: "Retention in days.\nRemove blobs older than X days.\n0 or lower means no retention."
-        format: int32
-        type: integer
-      sasUrl:
-        description: SAS url to a azure blob container with read/write/list/delete permissions.
-        type: string
-    type: object
-  AzureStorageInfoValue:
-    description: Azure Files or Blob Storage access information value for dictionary storage.
-    properties:
-      accessKey:
-        description: Access key for the storage account.
-        type: string
-      accountName:
-        description: Name of the storage account.
-        type: string
-      mountPath:
-        description: Path to mount the storage within the site's runtime environment.
-        type: string
-      shareName:
-        description: Name of the file share (container name, for Blob storage).
-        type: string
-      state:
-        description: State of the storage account.
-        enum:
-        - Ok
-        - InvalidCredentials
-        - InvalidShare
+      nextLink:
+        description: Link to next page of resources.
         readOnly: true
         type: string
-        x-ms-enum:
-          modelAsString: false
-          name: AzureStorageState
-      type:
-        description: Type of storage.
-        enum:
-        - AzureFiles
-        - AzureBlob
-        type: string
-        x-ms-enum:
-          modelAsString: false
-          name: AzureStorageType
+      value:
+        description: Collection of resources.
+        items:
+          $ref: '#/definitions/BackupItem'
+        type: array
+    required:
+    - value
     type: object
-  AzureStoragePropertyDictionaryResource:
+  BackupRequest:
     allOf:
     - description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
       properties:
@@ -10769,35 +10813,31 @@ definitions:
           readOnly: true
           type: string
       x-ms-azure-resource: true
-    description: AzureStorageInfo dictionary resource.
+    description: Description of a backup which will be performed.
     properties:
       properties:
-        additionalProperties:
-          $ref: '#/definitions/AzureStorageInfoValue'
-        description: Azure storage accounts.
-        type: object
+        description: BackupRequest resource specific properties
+        properties:
+          backupName:
+            description: Name of the backup.
+            type: string
+          backupSchedule:
+            $ref: '#/definitions/BackupSchedule'
+            description: Schedule for the backup if it is executed periodically.
+          databases:
+            description: Databases included in the backup.
+            items:
+              $ref: '#/definitions/DatabaseBackupSetting'
+            type: array
+          enabled:
+            description: True if the backup schedule is enabled (must be included in that case), false if the backup schedule should be disabled.
+            type: boolean
+          storageAccountUrl:
+            description: SAS URL to the container.
+            type: string
+        required:
+        - storageAccountUrl
         x-ms-client-flatten: true
-    type: object
-  AzureTableStorageApplicationLogsConfig:
-    description: Application logs to Azure table storage configuration.
-    properties:
-      level:
-        description: Log level.
-        enum:
-        - Off
-        - Verbose
-        - Information
-        - Warning
-        - Error
-        type: string
-        x-ms-enum:
-          modelAsString: false
-          name: LogLevel
-      sasUrl:
-        description: SAS URL to an Azure table with add/query/delete permissions.
-        type: string
-    required:
-    - sasUrl
     type: object
   BackupItem:
     allOf:
@@ -10905,22 +10945,7 @@ definitions:
             type: integer
         x-ms-client-flatten: true
     type: object
-  BackupItemCollection:
-    description: Collection of backup items.
-    properties:
-      nextLink:
-        description: Link to next page of resources.
-        readOnly: true
-        type: string
-      value:
-        description: Collection of resources.
-        items:
-          $ref: '#/definitions/BackupItem'
-        type: array
-    required:
-    - value
-    type: object
-  BackupRequest:
+  ConnectionStringDictionary:
     allOf:
     - description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
       properties:
@@ -10940,31 +10965,79 @@ definitions:
           readOnly: true
           type: string
       x-ms-azure-resource: true
-    description: Description of a backup which will be performed.
+    description: String dictionary resource.
     properties:
       properties:
-        description: BackupRequest resource specific properties
-        properties:
-          backupName:
-            description: Name of the backup.
-            type: string
-          backupSchedule:
-            $ref: '#/definitions/BackupSchedule'
-            description: Schedule for the backup if it is executed periodically.
-          databases:
-            description: Databases included in the backup.
-            items:
-              $ref: '#/definitions/DatabaseBackupSetting'
-            type: array
-          enabled:
-            description: True if the backup schedule is enabled (must be included in that case), false if the backup schedule should be disabled.
-            type: boolean
-          storageAccountUrl:
-            description: SAS URL to the container.
-            type: string
-        required:
-        - storageAccountUrl
+        additionalProperties:
+          $ref: '#/definitions/ConnStringValueTypePair'
+        description: Connection strings.
+        type: object
         x-ms-client-flatten: true
+    type: object
+  AzureStoragePropertyDictionaryResource:
+    allOf:
+    - description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+      properties:
+        id:
+          description: Resource Id.
+          readOnly: true
+          type: string
+        kind:
+          description: Kind of resource.
+          type: string
+        name:
+          description: Resource Name.
+          readOnly: true
+          type: string
+        type:
+          description: Resource type.
+          readOnly: true
+          type: string
+      x-ms-azure-resource: true
+    description: AzureStorageInfo dictionary resource.
+    properties:
+      properties:
+        additionalProperties:
+          $ref: '#/definitions/AzureStorageInfoValue'
+        description: Azure storage accounts.
+        type: object
+        x-ms-client-flatten: true
+    type: object
+  AzureStorageInfoValue:
+    description: Azure Files or Blob Storage access information value for dictionary storage.
+    properties:
+      accessKey:
+        description: Access key for the storage account.
+        type: string
+      accountName:
+        description: Name of the storage account.
+        type: string
+      mountPath:
+        description: Path to mount the storage within the site's runtime environment.
+        type: string
+      shareName:
+        description: Name of the file share (container name, for Blob storage).
+        type: string
+      state:
+        description: State of the storage account.
+        enum:
+        - Ok
+        - InvalidCredentials
+        - InvalidShare
+        readOnly: true
+        type: string
+        x-ms-enum:
+          modelAsString: false
+          name: AzureStorageState
+      type:
+        description: Type of storage.
+        enum:
+        - AzureFiles
+        - AzureBlob
+        type: string
+        x-ms-enum:
+          modelAsString: false
+          name: AzureStorageType
     type: object
   BackupSchedule:
     description: Description of a backup schedule. Describes how often should be the backup performed and what should be the retention policy.
@@ -11007,237 +11080,4 @@ definitions:
     - frequencyUnit
     - keepAtLeastOneBackup
     - retentionPeriodInDays
-    type: object
-  ConnStringValueTypePair:
-    description: Database connection string value to type pair.
-    properties:
-      type:
-        description: Type of database.
-        enum:
-        - MySql
-        - SQLServer
-        - SQLAzure
-        - Custom
-        - NotificationHub
-        - ServiceBus
-        - EventHub
-        - ApiHub
-        - DocDb
-        - RedisCache
-        - PostgreSQL
-        type: string
-        x-ms-enum:
-          modelAsString: false
-          name: ConnectionStringType
-      value:
-        description: Value of pair.
-        type: string
-    required:
-    - value
-    - type
-    type: object
-  ConnectionStringDictionary:
-    allOf:
-    - description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
-      properties:
-        id:
-          description: Resource Id.
-          readOnly: true
-          type: string
-        kind:
-          description: Kind of resource.
-          type: string
-        name:
-          description: Resource Name.
-          readOnly: true
-          type: string
-        type:
-          description: Resource type.
-          readOnly: true
-          type: string
-      x-ms-azure-resource: true
-    description: String dictionary resource.
-    properties:
-      properties:
-        additionalProperties:
-          $ref: '#/definitions/ConnStringValueTypePair'
-        description: Connection strings.
-        type: object
-        x-ms-client-flatten: true
-    type: object
-  ContainerCpuStatistics:
-    properties:
-      cpuUsage:
-        $ref: '#/definitions/ContainerCpuUsage'
-      onlineCpuCount:
-        format: int32
-        type: integer
-      systemCpuUsage:
-        format: int64
-        type: integer
-      throttlingData:
-        $ref: '#/definitions/ContainerThrottlingData'
-    type: object
-  ContainerCpuUsage:
-    properties:
-      kernelModeUsage:
-        format: int64
-        type: integer
-      perCpuUsage:
-        items:
-          format: int64
-          type: integer
-        type: array
-      totalUsage:
-        format: int64
-        type: integer
-      userModeUsage:
-        format: int64
-        type: integer
-    type: object
-  ContainerInfo:
-    properties:
-      currentCpuStats:
-        $ref: '#/definitions/ContainerCpuStatistics'
-      currentTimeStamp:
-        format: date-time
-        type: string
-      eth0:
-        $ref: '#/definitions/ContainerNetworkInterfaceStatistics'
-      id:
-        type: string
-      memoryStats:
-        $ref: '#/definitions/ContainerMemoryStatistics'
-      name:
-        type: string
-      previousCpuStats:
-        $ref: '#/definitions/ContainerCpuStatistics'
-      previousTimeStamp:
-        format: date-time
-        type: string
-    type: object
-  ContainerMemoryStatistics:
-    properties:
-      limit:
-        format: int64
-        type: integer
-      maxUsage:
-        format: int64
-        type: integer
-      usage:
-        format: int64
-        type: integer
-    type: object
-  ContainerNetworkInterfaceStatistics:
-    properties:
-      rxBytes:
-        format: int64
-        type: integer
-      rxDropped:
-        format: int64
-        type: integer
-      rxErrors:
-        format: int64
-        type: integer
-      rxPackets:
-        format: int64
-        type: integer
-      txBytes:
-        format: int64
-        type: integer
-      txDropped:
-        format: int64
-        type: integer
-      txErrors:
-        format: int64
-        type: integer
-      txPackets:
-        format: int64
-        type: integer
-    type: object
-  ContainerThrottlingData:
-    properties:
-      periods:
-        format: int32
-        type: integer
-      throttledPeriods:
-        format: int32
-        type: integer
-      throttledTime:
-        format: int32
-        type: integer
-    type: object
-  ContinuousWebJob:
-    allOf:
-    - description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
-      properties:
-        id:
-          description: Resource Id.
-          readOnly: true
-          type: string
-        kind:
-          description: Kind of resource.
-          type: string
-        name:
-          description: Resource Name.
-          readOnly: true
-          type: string
-        type:
-          description: Resource type.
-          readOnly: true
-          type: string
-      x-ms-azure-resource: true
-    description: Continuous Web Job Information.
-    properties:
-      properties:
-        description: ContinuousWebJob resource specific properties
-        properties:
-          detailed_status:
-            description: Detailed status.
-            type: string
-          error:
-            description: Error information.
-            type: string
-          extra_info_url:
-            description: Extra Info URL.
-            type: string
-          log_url:
-            description: Log URL.
-            type: string
-          run_command:
-            description: Run command.
-            type: string
-          settings:
-            additionalProperties:
-              type: object
-            description: Job settings.
-            type: object
-          status:
-            description: Job status.
-            enum:
-            - Initializing
-            - Starting
-            - Running
-            - PendingRestart
-            - Stopped
-            type: string
-            x-ms-enum:
-              modelAsString: false
-              name: ContinuousWebJobStatus
-          url:
-            description: Job URL.
-            type: string
-          using_sdk:
-            description: Using SDK?
-            type: boolean
-          web_job_type:
-            description: Job type.
-            enum:
-            - Continuous
-            - Triggered
-            type: string
-            x-ms-enum:
-              modelAsString: false
-              name: WebJobType
-        x-ms-client-flatten: true
     type: object
