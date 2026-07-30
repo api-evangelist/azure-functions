@@ -3,7 +3,19 @@ name: Azure Functions
 description: Azure Functions is a serverless compute service that lets you run event-triggered code without having to explicitly
   provision or manage infrastructure, supporting multiple programming languages and integration patterns.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/azure-functions.png
 tags:
 - Cloud
 - Compute
@@ -15,36 +27,22 @@ created: '2024-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: azure-functions:azure-functions-management-api
-  name: Azure Functions Management API
-  description: REST API for managing Azure Functions apps, function deployments, and configuration.
+- aid: azure-functions:azure-functions-webapps-api
+  name: Azure Functions WebApps API
+  description: The WebApps API from Azure Functions — 30 operation(s) for webapps.
   humanURL: https://docs.microsoft.com/en-us/azure/azure-functions/
   baseURL: https://management.azure.com
   tags:
-  - Deployment
-  - Functions
-  - Management
+  - WebApps
   properties:
+  - type: OpenAPI
+    url: openapi/azure-functions-webapps-api-openapi.yml
   - type: Documentation
     url: https://docs.microsoft.com/en-us/rest/api/appservice/
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/web/resource-manager/Microsoft.Web/stable/2022-03-01/WebApps.json
   - type: GettingStarted
     url: https://docs.microsoft.com/en-us/azure/azure-functions/functions-get-started
-- aid: azure-functions:azure-functions-runtime-api
-  name: Azure Functions Runtime API
-  description: API for invoking and interacting with deployed Azure Functions.
-  humanURL: https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference
-  baseURL: https://{function-app-name}.azurewebsites.net
-  tags:
-  - HTTP Triggers
-  - Invocation
-  - Runtime
-  properties:
   - type: Documentation
     url: https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/openapi/azure-functions-openapi.yaml
   - type: X-NaftikoCapability
     url: capabilities/azure-functions-webapps.yaml
 common:
