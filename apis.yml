@@ -43,8 +43,6 @@ apis:
     url: https://docs.microsoft.com/en-us/azure/azure-functions/functions-get-started
   - type: Documentation
     url: https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook
-  - type: X-NaftikoCapability
-    url: capabilities/azure-functions-webapps.yaml
 common:
 - type: AgenticAccess
   url: agentic-access/azure-functions-agentic-access.yml
