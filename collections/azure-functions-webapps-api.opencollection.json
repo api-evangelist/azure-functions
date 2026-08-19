@@ -1,0 +1,761 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Azure Functions Management WebApps API",
+    "version": "2022-09-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "WebApps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Azure Functions Get All Apps for a Subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/sites"
+          },
+          "docs": "Description for Get all apps for a subscription."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets All Web, Mobile, and API Apps in the Specified Resource Group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites",
+            "params": [
+              {
+                "name": "includeSlots",
+                "value": "example-value",
+                "type": "query",
+                "description": "Specify <strong>true</strong> to include deployment slots in results. The default is false, which only gives you the production slot of all apps."
+              }
+            ]
+          },
+          "docs": "Description for Gets all web, mobile, and API apps in the specified resource group."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets the Details of a Web, Mobile, or API App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Gets the details of a web, mobile, or API app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Creates a New Web, Mobile, or API App in an Existing Resource Group, or Updates an Existing App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter."
+              }
+            ]
+          },
+          "docs": "Description for Creates a new web, mobile, or API app in an existing resource group, or updates an existing app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Creates a New Web, Mobile, or API App in an Existing Resource Group, or Updates an Existing App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Unique name of the app to create or update. To create or update a deployment slot, use the {slot} parameter."
+              }
+            ]
+          },
+          "docs": "Description for Creates a new web, mobile, or API app in an existing resource group, or updates an existing app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Deletes a Web, Mobile, or API App, or One of the Deployment Slots.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app to delete."
+              },
+              {
+                "name": "deleteMetrics",
+                "value": "example-value",
+                "type": "query",
+                "description": "If true, web app metrics are also deleted."
+              },
+              {
+                "name": "deleteEmptyServerFarm",
+                "value": "example-value",
+                "type": "query",
+                "description": "Specify false if you want to keep empty App Service plan. By default, empty App Service plan is deleted."
+              }
+            ]
+          },
+          "docs": "Description for Deletes a web, mobile, or API app, or one of the deployment slots."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Analyze a Custom Hostname.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/analyzeCustomHostname",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of web app."
+              },
+              {
+                "name": "hostName",
+                "value": "example-value",
+                "type": "query",
+                "description": "Custom hostname."
+              }
+            ]
+          },
+          "docs": "Description for Analyze a custom hostname."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Applies the Configuration Settings from the Target Slot Onto the Current Slot.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/applySlotConfig",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Applies the configuration settings from the target slot onto the current slot."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Creates a Backup of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/backup",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Creates a backup of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets Existing Backups of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/backups",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Gets existing backups of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets a Backup of an App by its ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/backups/:backupId",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              },
+              {
+                "name": "backupId",
+                "value": "example-value",
+                "type": "path",
+                "description": "ID of the backup."
+              }
+            ]
+          },
+          "docs": "Description for Gets a backup of an app by its ID."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Deletes a Backup of an App by its ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/backups/:backupId",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              },
+              {
+                "name": "backupId",
+                "value": "example-value",
+                "type": "path",
+                "description": "ID of the backup."
+              }
+            ]
+          },
+          "docs": "Description for Deletes a backup of an app by its ID."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets Status of a Web App Backup That May Be in Progress, Including Secrets Associated with the Backup, Such as the Azure Storage SAS URL. Also Can Be Used to Update the SAS URL for the Backup if a New URL is Passed in the Request Body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/backups/:backupId/list",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of web app."
+              },
+              {
+                "name": "backupId",
+                "value": "example-value",
+                "type": "path",
+                "description": "ID of backup."
+              }
+            ]
+          },
+          "docs": "Description for Gets status of a web app backup that may be in progress, including secrets associated with the backup, such as the Azure Storage SAS URL. Also can be used to update the SAS URL for the backup if a new URL is passed in the request body."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Restores a Specific Backup to Another App (or Deployment Slot, if Specified).",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/backups/:backupId/restore",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              },
+              {
+                "name": "backupId",
+                "value": "example-value",
+                "type": "path",
+                "description": "ID of the backup."
+              }
+            ]
+          },
+          "docs": "Description for Restores a specific backup to another app (or deployment slot, if specified)."
+        },
+        {
+          "info": {
+            "name": "Azure Functions List the Configurations of an App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for List the configurations of an app"
+        },
+        {
+          "info": {
+            "name": "Azure Functions Replaces the Application Settings of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/appsettings",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Replaces the application settings of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets the Application Settings of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/appsettings/list",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Gets the application settings of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Updates the Authentication / Authorization Settings Associated with Web App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/authsettings",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of web app."
+              }
+            ]
+          },
+          "docs": "Description for Updates the Authentication / Authorization settings associated with web app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets the Authentication/Authorization Settings of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/authsettings/list",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Gets the Authentication/Authorization settings of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Updates the Azure Storage Account Configurations of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/azurestorageaccounts",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Updates the Azure storage account configurations of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets the Azure Storage Account Configurations of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/azurestorageaccounts/list",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Gets the Azure storage account configurations of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Updates the Backup Configuration of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/backup",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Updates the backup configuration of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Deletes the Backup Configuration of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/backup",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Deletes the backup configuration of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets the Backup Configuration of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/backup/list",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Gets the backup configuration of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets the Config Reference App Settings and Status of an App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/configreferences/appsettings",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Gets the config reference app settings and status of an app"
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets the Config Reference and Status of an App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/configreferences/appsettings/:appSettingKey",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              },
+              {
+                "name": "appSettingKey",
+                "value": "example-value",
+                "type": "path",
+                "description": "App Setting key name."
+              }
+            ]
+          },
+          "docs": "Description for Gets the config reference and status of an app"
+        },
+        {
+          "info": {
+            "name": "Azure Functions Replaces the Connection Strings of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/connectionstrings",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Replaces the connection strings of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets the Connection Strings of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/connectionstrings/list",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Gets the connection strings of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets the Logging Configuration of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/logs",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Gets the logging configuration of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Updates the Logging Configuration of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/logs",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Updates the logging configuration of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Replaces the Metadata of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/metadata",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Replaces the metadata of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets the Metadata of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/metadata/list",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Gets the metadata of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets the Git/FTP Publishing Credentials of an App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/publishingcredentials/list",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Gets the Git/FTP publishing credentials of an app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Updates the Push Settings Associated with Web App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/pushsettings",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of web app."
+              }
+            ]
+          },
+          "docs": "Description for Updates the Push settings associated with web app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets the Push Settings Associated with Web App.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/pushsettings/list",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of web app."
+              }
+            ]
+          },
+          "docs": "Description for Gets the Push settings associated with web app."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Gets the Names of App Settings and Connection Strings That Stick to the Slot (not Swapped).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/slotConfigNames",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Gets the names of app settings and connection strings that stick to the slot (not swapped)."
+        },
+        {
+          "info": {
+            "name": "Azure Functions Updates the Names of Application Settings and Connection String That Remain with the Slot During Swap Operation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/config/slotConfigNames",
+            "params": [
+              {
+                "name": "name",
+                "value": "example-value",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Updates the names of application settings and connection string that remain with the slot during swap operation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
